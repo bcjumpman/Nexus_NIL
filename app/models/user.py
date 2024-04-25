@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
     social_links = db.Column(db.String(50))
     profile_picture = db.Column(db.String(50))
 
-    carts = relationship('Cart', back_populates='user')
+    carts = relationship('Cart', back_populates='users')
     requests = relationship('Request', back_populates='users')
     opportunities = relationship('Opportunity', back_populates='users')
     reviews = relationship('Review', back_populates='users')
