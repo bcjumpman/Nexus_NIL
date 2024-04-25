@@ -4,9 +4,13 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User
+from .models import db, User, Cart, Review, AddToCart, Opportunity
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.opportunity_routes import opportunity_routes
+from .api.request_routes import request_routes
+from .api.review_routes import review_routes
+from .api.aws_routes import upload_file_to_s3, remove_file_from_s3, get_unique_filename
 from .seeds import seed_commands
 from .config import Config
 
@@ -28,6 +32,9 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(opportunity_routes, url_prefix='/api/opportunities')
+app.register_blueprint(request_routes, url_prefix='/api/requests')
+app.register_blueprint(review_routes, url_prefix='/api/reviews')
 db.init_app(app)
 Migrate(app, db)
 

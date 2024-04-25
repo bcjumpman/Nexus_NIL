@@ -19,7 +19,7 @@ class Review(db.Model):
   updated_at = Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
   users = relationship('User', back_populates='reviews')
-  opportunities = relationship('Product', back_populates='reviews')
+  opportunities = relationship('Opportunity', back_populates='reviews')
 
   def to_dict(self):
       return {
