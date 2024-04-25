@@ -3,6 +3,7 @@ from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from .addtocart import AddToCart
+from .user import User
 
 class Cart(db.Model):
     __tablename__ = 'carts'
@@ -15,7 +16,7 @@ class Cart(db.Model):
     created_at = Column(db.DateTime, default=datetime.utcnow)
     updated_at = Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    users = relationship('User', back_populates='carts')
+    # users = relationship('User', back_populates='carts')
     requests = relationship('Request', back_populates='carts', cascade='all, delete-orphan')
     add_to_cart = relationship('AddToCart', back_populates='carts', cascade='all, delete-orphan')
 
@@ -38,3 +39,5 @@ class Cart(db.Model):
             'created_at': self.created_at.strftime("%Y-%m-%d %H:%M:%S"),
             'updated_at': self.updated_at.strftime("%Y-%m-%d %H:%M:%S")
         }
+
+    User.carts = relationship('Cart', back_populates='users')
