@@ -54,10 +54,15 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
+            first_name =form.data['first_name'],
+            last_name =form.data['last_name'],
+            phone =form.data['phone'],
             password=form.data['password']
         )
         db.session.add(user)
         db.session.commit()
+
+
         login_user(user)
         return user.to_dict()
     return form.errors, 401
