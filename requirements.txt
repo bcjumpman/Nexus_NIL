@@ -28,3 +28,4 @@ urllib3==1.26.18; python_version < '3.10'
 werkzeug==2.2.2; python_version >= '3.7'
 wtforms==3.0.1; python_version >= '3.7'
 zipp==3.17.0; python_version >= '3.8'
+Faker>=8.0.0
