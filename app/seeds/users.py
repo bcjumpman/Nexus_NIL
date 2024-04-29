@@ -5,15 +5,24 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='Demo', first_name='Demo', last_name='User', email='demo@aa.io', password='password', phone='123456790')
+    michael = User(
+        username='Michael', first_name='Michael', last_name='Jackson', email='michael@aa.io', password='password', phone='123456790')
+    lionel = User(
+        username='Lionel', first_name='Lionel', last_name='Messi', email='lionel@aa.io', password='password', phone='123456790')
+    usain = User(
+        username='Usain', first_name='Usain', last_name='Bolt', email='usain@aa.io', password='password', phone='123456790')
+    tiger = User(
+        username='Tiger', first_name='Tiger', last_name='Woods', email='tiger@aa.io', password='password', phone='123456790')
+    cristiano = User(
+        username='Ronaldo', first_name='Cristiano', last_name='Ronaldo', email='cristiano@aa.io', password='password', phone='123456790')
 
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(michael)
+    db.session.add(lionel)
+    db.session.add(usain)
+    db.session.add(tiger)
+    db.session.add(cristiano)
     db.session.commit()
 
 
@@ -28,5 +37,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
-        
+
     db.session.commit()

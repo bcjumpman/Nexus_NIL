@@ -16,8 +16,8 @@ class Request(db.Model):
   created_at = Column(db.DateTime, default=datetime.utcnow)
   updated_at = Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-  carts = relationship('Cart', back_populates='orders')
-  users = relationship('User', back_populates='orders')
+  carts = relationship('Cart', back_populates='requests')
+  users = relationship('User', back_populates='requests')
 
   def to_dict(self):
       return {
