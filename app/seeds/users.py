@@ -4,16 +4,25 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    magic = User(
-        username='Magic', email='magic@aa.io', password='password', first_name='Magic', last_name='Johnson', phone='123456789')
-    kobe = User(
-        username='Kobe', email='kobe@aa.io', password='password', first_name='Kobe', last_name='Bryant', phone='123456780')
+    demo = User(
+        username='Demo', first_name='Demo', last_name='User', email='demo@aa.io', password='password', phone='123456790')
     michael = User(
-        username='Michael', email='michael@aa.io', password='password', first_name='Michael', last_name='Jordan', phone='123456781')
+        username='Michael', first_name='Michael', last_name='Jackson', email='michael@aa.io', password='password', phone='123456790')
+    lionel = User(
+        username='Lionel', first_name='Lionel', last_name='Messi', email='lionel@aa.io', password='password', phone='123456790')
+    usain = User(
+        username='Usain', first_name='Usain', last_name='Bolt', email='usain@aa.io', password='password', phone='123456790')
+    tiger = User(
+        username='Tiger', first_name='Tiger', last_name='Woods', email='tiger@aa.io', password='password', phone='123456790')
+    cristiano = User(
+        username='Ronaldo', first_name='Cristiano', last_name='Ronaldo', email='cristiano@aa.io', password='password', phone='123456790')
 
-    db.session.add(magic)
-    db.session.add(kobe)
+    db.session.add(demo)
     db.session.add(michael)
+    db.session.add(lionel)
+    db.session.add(usain)
+    db.session.add(tiger)
+    db.session.add(cristiano)
     db.session.commit()
 
 

@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
@@ -30,10 +30,10 @@ class User(db.Model, UserMixin):
     social_links = db.Column(db.String(50))
     profile_picture = db.Column(db.String(50))
 
-    carts = relationship('Cart', back_populates='users')
-    requests = relationship('Request', back_populates='users')
     opportunities = relationship('Opportunity', back_populates='users')
     reviews = relationship('Review', back_populates='users')
+    carts = relationship('Cart', back_populates='users')
+    requests = relationship('Request', back_populates='users')
 
 
     @property

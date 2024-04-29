@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, Text, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime
+# from .review import Review
 
 
 class Opportunity(db.Model):
@@ -21,7 +22,7 @@ class Opportunity(db.Model):
     description = Column(Text)
     multiple_days = Column(Boolean)
     number_of_days = Column(Integer)
-    contact_information = Column(String)
+    contact_information = Column(Text)
     created_at = Column(db.DateTime, default=datetime.utcnow)
     updated_at = Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -45,5 +46,6 @@ class Opportunity(db.Model):
             'description': self.description,
             'contact_information': self.contact_information,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            # 'reviews' : Review.query.filter_by(opportunity_id=self.id).all()
         }
