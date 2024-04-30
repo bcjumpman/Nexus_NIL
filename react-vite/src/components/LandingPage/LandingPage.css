@@ -1,0 +1,43 @@
+* {
+    background-color: #7fb1e2;
+}
+
+h3 {
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .opportunities-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .opportunity-container {
+    flex: 0 0 calc(20% - 20px);
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .opportunity-container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+
+  @media screen and (max-width: 915px) {
+    .product-container {
+      flex-basis: calc(50% - 20px);
+    }
+  }

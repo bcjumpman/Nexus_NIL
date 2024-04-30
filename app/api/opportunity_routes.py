@@ -17,7 +17,7 @@ def get_all_opportunities():
 
 # * Get unique opportunity
 @opportunity_routes.route('/<int:id>')
-def get_one_opportunity():
+def get_one_opportunity(id):
     opportunity = Opportunity.query.get(id)
 
     if not opportunity:
