@@ -1,0 +1,151 @@
+h1 {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+
+  .opportunity-detail-rate {
+    font-size: 16px;
+  }
+
+
+  .opportunity-details-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    max-width: 500px;
+  }
+
+
+  .opportunity-detail-image {
+    width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+    margin-top: 20px;
+  }
+
+
+  .opportunity-detail-description {
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+
+  .review-container {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+
+
+  .review-user {
+
+    font-weight: bold;
+    color: #333;
+  }
+
+
+  .review-rating {
+
+    font-size: 14px;
+    color: #f0c14b;
+  }
+
+
+  .review-body {
+
+    margin-top: 10px;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+
+  .review-image {
+    display: block;
+    margin-top: 10px;
+    max-width: 100px;
+    height: auto;
+    border-radius: 5px;
+  }
+
+
+  .create-review {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 10px;
+    background-color: #f0c14b;
+    color: #111;
+    border: 1px solid #a88734;
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+  }
+
+  .create-review:hover {
+    background-color: #f7e99b;
+  }
+
+
+  .review-verified-purchase {
+    background-color: #c0e1f7;
+    color: #0073e6;
+
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 3px 12px 12px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+
+  .edit-review, .delete-review {
+
+    font-weight: 400;
+    font-style: normal;
+    font-size: 10px;
+    background-color: #a7a7a7;
+    color: #e74747;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    margin: 5px;
+  }
+
+  .edit-review:hover{
+    background-color: #5ec36b;
+  }
+
+  .delete-review:hover {
+    background-color: rgb(215, 113, 113);
+  }
+
+
+  .product-detail-add-to-cart-button {
+
+    font-size: 14px;
+  }
+
+
+  .average-rating-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  .star-filled {
+    color: #f0c14b;
+  }
+
+  .star-empty {
+    color: #ddd;
+  }

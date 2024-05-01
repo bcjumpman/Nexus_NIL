@@ -16,6 +16,16 @@ const getAllUsers = (users) => ({
   users,
 });
 
+export const setLoading = (loading) => ({
+  type: "SET_LOADING",
+  loading,
+});
+
+export const setError = (error) => ({
+  type: "SET_ERROR",
+  error,
+});
+
 export const thunkAuthenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/");
   if (response.ok) {
@@ -65,21 +75,38 @@ export const thunkSignup = (user) => async (dispatch) => {
 };
 
 export const thunkLogout = () => async (dispatch) => {
-  await fetch("/api/auth/logout");
-  dispatch(removeUser());
+  try {
+    const response = await fetch("/api/auth/logout");
+    if (!response.ok) {
+      throw new Error("Logout failed on the server");
+    }
+    dispatch(removeUser());
+  } catch (error) {
+    console.error("Logout error:", error);
+    // Optionally handle error in UI, e.g., show a message
+  }
 };
 
 export const getAllUsersThunk = () => async (dispatch) => {
-  const response = await fetch(`/api/users`);
-  if (!response.ok) {
-    throw new Error("Failed to get all users");
+  dispatch(setLoading(true));
+  try {
+    const response = await fetch(`/api/users`);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to get all users: ${response.status} ${response.statusText}`
+      );
+    }
+    const data = await response.json();
+    dispatch(getAllUsers(data));
+  } catch (error) {
+    console.error(error);
+    dispatch(setError(error.toString()));
+  } finally {
+    dispatch(setLoading(false));
   }
-  const data = await response.json();
-  dispatch(getAllUsers(data));
-  return data;
 };
 
-const initialState = { user: null };
+const initialState = { user: null, users: [], loading: false, error: null };
 
 function sessionReducer(state = initialState, action) {
   switch (action.type) {
