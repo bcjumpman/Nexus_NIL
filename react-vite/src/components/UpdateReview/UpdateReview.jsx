@@ -1,16 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { updateReviewThunk } from "../../redux/reviews";
+import { getReviewById } from "../../redux/reviews";
 import CreateNewReview from "../ReviewForm/ReviewForm";
 
 const UpdateReview = () => {
   const dispatch = useDispatch();
   const { reviewId } = useParams();
-  const review = useSelector((state) => state?.reviews);
+  const reviews = useSelector((state) => state?.reviews.reviews);
+  const review = reviews.find((review) => review.id === +reviewId);
+  console.log("review>>>", reviews);
 
   useEffect(() => {
-    dispatch(updateReviewThunk(reviewId));
+    dispatch(getReviewById(reviewId));
   }, [reviewId, dispatch]);
 
   const buttonName = "Update Review";

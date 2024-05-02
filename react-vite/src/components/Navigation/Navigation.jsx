@@ -8,7 +8,7 @@ import "./Navigation.css";
 function Navigation() {
   const dispatch = useDispatch();
   const allOpportunities = useSelector(
-    (state) => state.opportunities.opportunities.opportunities || []
+    (state) => state.opportunities.opportunities.opportunities
   );
   useEffect(() => {
     dispatch(loadAllThunk());

@@ -131,15 +131,16 @@ export const updateReviewThunk = (reviewId, reviewData) => async (dispatch) => {
   try {
     const response = await fetch(`/api/reviews/${reviewId}/edit`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(reviewData),
+      body: reviewData,
     });
 
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.message || "Failed to update review");
     }
+    // console.log(data);
     dispatch(updateReview(data));
+    return data;
   } catch (error) {
     console.error("Error updating review:", error);
     return { error: error.message };
@@ -164,7 +165,7 @@ export const updateReviewThunk = (reviewId, reviewData) => async (dispatch) => {
 //   }
 // };
 
-// Delete a Review Thunk
+//* Delete a Review Thunk
 export const deleteReviewThunk = (reviewId) => async (dispatch) => {
   try {
     const response = await fetch(`/api/reviews/${reviewId}`, {
@@ -237,7 +238,7 @@ const reviewReducer = (state = initialState, action) => {
     case "reviews/SET_ERROR":
       return { ...state, error: action.error };
     case CREATE_REVIEW:
-      return { ...state, reviews: [...state.reviews, action.data] };
+      return { ...state, reviews: [...state.reviews, action.review] };
     case UPDATE_REVIEW:
       return {
         ...state,
@@ -253,7 +254,7 @@ const reviewReducer = (state = initialState, action) => {
         ),
       };
     case GET_ONE_REVIEW:
-      return { ...state, reviewDetails: action.data };
+      return { ...state, reviews: action.data };
     case LOAD_UPDATE:
       return { ...state, reviews: action.data };
     default:

@@ -1,0 +1,10 @@
+// import { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { NavLink } from "react-router-dom";
+// import * as CartActions from "../../redux/carts";
+// import * as ProductActions from "../../redux/products";
+// import { updateCartThunk } from "../../redux/addtocart";
+// import { useModal } from "../../context/Modal";
+// import { addToCartThunk, removeFromCartThunk } from "../../redux/addtocart";
+// import OpenModalButton from "../OpenModalButton/OpenModalButton";
+// import "./CartManagements.css";

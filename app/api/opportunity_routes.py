@@ -109,7 +109,7 @@ def createReview(id):
             user_id=current_user.id,
             opportunity_id=id,
             rating=form.rating.data,
-            verified_work=form.verified_work.data,
+            verified_booking=form.verified_booking.data,
             description=form.description.data
     )
 
