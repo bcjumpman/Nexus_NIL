@@ -126,7 +126,7 @@ const CartManagement = () => {
   }
 
   if (!currentUser || !userCart || !allOpportunities) {
-    return <p>Please give us a second...</p>;
+    return <p>Please login or sign up to view cart!</p>;
   }
 
   return (
