@@ -22,14 +22,14 @@ export const removeFromCart = (item) => ({
 //* Adding opps to cart thunk
 export const addToCartThunk = (cart_id, opportunity_id) => async (dispatch) => {
   try {
-    const response = await fetch("/api/opportunity/cart/add_opportunity", {
+    const response = await fetch("/api/opportunities/cart/add_opportunity", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ cart_id, opportunity_id }),
     });
-
+    console.log("RESPONSE", response);
     if (!response.ok) {
       throw new Error("Failed to add opportunity to cart.");
     }
@@ -85,6 +85,7 @@ export const removeFromCartThunk = (cartItemId) => async (dispatch) => {
 const addToCartReducer = (state = {}, action) => {
   switch (action.type) {
     case ADDING_TO_CART:
+      console.log("ACTION DATA", action.data);
       return { ...state, ...action.data };
     case UPDATING_CART:
       return { ...state, ...action.data };

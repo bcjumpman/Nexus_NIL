@@ -13,7 +13,7 @@ class Review(db.Model):
   user_id = Column(Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
   opportunity_id = Column(Integer, ForeignKey(add_prefix_for_prod('opportunities.id')), nullable=False)
   rating = Column(Integer, nullable=False)
-  verified_booking = Column(Boolean, nullable=False)
+  verified_booking = Column(Boolean, default=False)
   description = Column(Text)
   created_at = Column(db.DateTime, default=datetime.utcnow)
   updated_at = Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

@@ -258,6 +258,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { createReviewThunk, updateReviewThunk } from "../../redux/reviews";
+import "./ReviewForm.css";
 
 const CreateNewReview = ({ buttonName, updatingReview }) => {
   const dispatch = useDispatch();
@@ -271,7 +272,7 @@ const CreateNewReview = ({ buttonName, updatingReview }) => {
   const [submitted, setSubmitted] = useState(false);
   const [hover, setHover] = useState(null);
 
-  console.log("OPPORTUNITY ID>>>>", opportunityId);
+  // console.log("OPPORTUNITY ID>>>>", opportunityId);
   useEffect(() => {
     if (updatingReview) {
       setDescription(updatingReview.description);
@@ -346,7 +347,7 @@ const CreateNewReview = ({ buttonName, updatingReview }) => {
         rows={7}
         cols={70}
       />
-      <button
+      {/* <button
         type="button"
         className={`verified-button ${
           verifiedBooking ? "verified" : "not-verified"
@@ -354,7 +355,7 @@ const CreateNewReview = ({ buttonName, updatingReview }) => {
         onClick={() => setVerifiedBooking(!verifiedBooking)}
       >
         {verifiedBooking ? "Verified Booking" : "Mark as Verified"}
-      </button>
+      </button> */}
       <button type="submit" className="submit-button">
         {buttonName}
       </button>

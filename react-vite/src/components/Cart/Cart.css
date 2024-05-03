@@ -48,7 +48,7 @@ h4 {
   margin-left: auto;
   cursor: pointer;
   font-size: 10px;
-  background-color: #f0c14b;
+  background-color: #12a1e8;
   color: #111;
   border: none;
   padding: 10px 20px;
@@ -58,7 +58,7 @@ h4 {
 }
 
 .cart-item-delete button:hover {
-  background-color: #d2ac2a;
+  background-color: #8dc3df;
 }
 
 .cart-total {
@@ -66,9 +66,8 @@ h4 {
 }
 
 .cart-action-buttons button {
-  font-family: "Spectral SC", serif;
   font-size: 10px;
-  background-color: #f0c14b;
+  background-color: #12a1e8;
   color: #111;
   border: none;
   padding: 10px 20px;
@@ -78,7 +77,7 @@ h4 {
 }
 
 .cart-action-buttons button:hover {
-  background-color: #d2ac2a;
+  background-color: #8dc3df;
 }
 
 .spinner {

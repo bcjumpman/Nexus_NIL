@@ -1,0 +1,18 @@
+h1 {
+    font-size: 24px;
+    text-align: center;
+}
+
+.create-update-review-form {
+    border: 1px solid #6b9ee1;
+    /* margin-left: 10px; */
+    padding: 10px 10px 10px 10px;
+    border-radius: 8px;
+    width: 600px;
+    align-content: center;
+}
+
+.description-textarea {
+    display: flex;
+    justify-content: center;
+}

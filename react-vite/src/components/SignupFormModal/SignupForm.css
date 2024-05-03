@@ -46,13 +46,18 @@
   }
 
   .signup-form-container button[type="submit"]:hover {
-    background-color: #3aa943;
+    background-color: #8e65c4;
   }
 
-  .signup-form-container p {
+  .signupFrom p {
     color: red;
     margin-top: 5px;
     font-size: 14px;
+  }
+
+
+    .errorMessage {
+      color: red;
   }
 
   .login-form-container button {

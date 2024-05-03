@@ -217,7 +217,7 @@ const initialState = {
 const opportunityReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ALL_OPPORTUNITIES:
-      console.log("ACTION PAYLOAD", action.payload);
+      // console.log("ACTION PAYLOAD", action.payload);
       return { ...state, opportunities: action.payload };
     case GET_ONE_OPPORTUNITY:
       return { ...state, opportunity: action.data };

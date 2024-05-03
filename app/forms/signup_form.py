@@ -20,12 +20,12 @@ def username_exists(form, field):
         raise ValidationError('Username is already in use.')
 
 
-def phone_exists(form, field):
-    # Checking if phone is already in use
-    phone = field.data
-    user = User.query.filter(User.phone == phone).first()
-    if user:
-        raise ValidationError('Phone number is already in use.')
+# def phone_exists(form, field):
+#     # Checking if phone is already in use
+#     phone = field.data
+#     user = User.query.filter(User.phone == phone).first()
+#     if user:
+#         raise ValidationError('Phone number is already in use.')
 
 
 class SignUpForm(FlaskForm):

@@ -7,13 +7,12 @@ import "./LandingPage.css";
 
 const AllOpportunities = () => {
   const dispatch = useDispatch();
-  const allOpportunities = useSelector(
-    (state) => state.opportunities.opportunities.opportunities
-  );
-
   const [isLoading, setIsLoading] = useState(true);
   const userCart = useSelector((state) => state?.carts?.cart_items);
   const [reload, setReload] = useState(false);
+  const allOpportunities = useSelector(
+    (state) => state.opportunities.opportunities.opportunities
+  );
 
   useEffect(() => {
     const fetchOpportunities = async () => {
