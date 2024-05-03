@@ -1,14 +1,15 @@
-import { useModal } from "../../context/Modal";
+// import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { deleteReviewThunk } from "../../redux/reviews";
 import "./DeleteReviews.css";
 
 const DeleteReview = () => {
   const dispatch = useDispatch();
-  const { closeModal } = useModal();
-  const { reviewId } = useParams();
-
+  const navigate = useNavigate();
+  // const { closeModal } = useModal();
+  const { reviewId, opportunityId } = useParams();
+  console.log("OPPORTUNITy ID>>>", opportunityId);
   const onDelete = (e) => {
     e.preventDefault();
     dispatch(deleteReviewThunk(reviewId)).then(() => {
@@ -16,9 +17,9 @@ const DeleteReview = () => {
     });
   };
 
-  const onKeep = () => {
-    closeModal();
-  };
+  // const onKeep = () => {
+  //   closeModal;
+  // };
 
   return (
     <>
@@ -26,9 +27,14 @@ const DeleteReview = () => {
         <h3>Confirm Delete</h3>
         <p>Are you sure you want to remove your product review?</p>
         <button className="yes-delete-review" onClick={onDelete}>
-          Yes (Delete Review)
+          Delete Review
         </button>
-        <button onClick={onKeep}>No (Keep Review)</button>
+        <button
+          onClick={() => navigate(`/opportunities/${opportunityId}/reviews/`)}
+        >
+          {" "}
+          Keep Review{" "}
+        </button>
       </div>
     </>
   );

@@ -109,7 +109,7 @@ def createReview(id):
             user_id=current_user.id,
             opportunity_id=id,
             rating=form.rating.data,
-            verified_booking=form.verified_booking.data,
+            # verified_booking=form.verified_booking.data,
             description=form.description.data
     )
 
@@ -135,12 +135,25 @@ def get_cart():
         if not cart:
             return jsonify({'message': 'Cart not found for the current user.'}), 404
 
-        # Get associated items and calculate subtotal
+        # Fetch associated cart items with subtotal
         cart_items = AddToCart.query.filter_by(cart_id=cart.id).all()
-        cart_data = serialize_cart(cart_items)
 
-        return jsonify({'cart_items': cart_data}), 200
+        # Serialize cart items and calculate subtotal
+        serialized_cart = []
+        subtotal = 0.00
+        for item in cart_items:
+            subtotal += item.subtotal
+            serialized_cart.append({
+                'id': item.id,
+                'cart_id': item.cart_id,
+                'opportunity_id': item.opportunity_id,
+                'quantity_added': item.quantity_added,
+                'subtotal': item.subtotal,
+                'created_at': item.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+                'updated_at': item.updated_at.strftime("%Y-%m-%d %H:%M:%S")
+            })
 
+        return jsonify({'cart_items': serialized_cart}), 200
 
     elif request.method == 'POST':
         cart = Cart.query.filter_by(user_id=current_user.id).first()
@@ -150,21 +163,6 @@ def get_cart():
             db.session.commit()
             return jsonify({'message': 'New cart created for the current user.'}), 201
         return jsonify({'message': 'Cart already exists for the current user.'}), 200
-
-def serialize_cart(cart_items):
-    cart_data = []
-    subtotal = 0.00
-    for item in cart_items:
-        subtotal += item.subtotal
-        cart_data.append({
-            'id': item.id,
-            'cart_id': item.cart_id,
-            'opportunity_id': item.opportunity_id,
-            'subtotal': item.subtotal,
-            'created_at': item.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-            'updated_at': item.updated_at.strftime("%Y-%m-%d %H:%M:%S")
-        })
-    return {'items': cart_data, 'subtotal': subtotal}
 
 # * Get all carts for user
 @opportunity_routes.route('/carts/history')
@@ -231,7 +229,7 @@ def add_opportunity_to_cart():
     if existing_item:
         existing_item.subtotal += subtotal
     else:
-        new_item = AddToCart(cart_id=cart.id, opportunity_id=opportunity_id, subtotal=subtotal)
+        new_item = AddToCart(cart_id=cart.id, opportunity_id=opportunity_id, quantity_added=quantity, subtotal=subtotal)
         db.session.add(new_item)
 
     db.session.commit()

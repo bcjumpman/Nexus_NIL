@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllThunk } from "../../redux/opportunities";
+import { addToCartThunk } from "../../redux/addtocart";
 import { NavLink } from "react-router-dom";
 import "./LandingPage.css";
 
@@ -11,6 +12,8 @@ const AllOpportunities = () => {
   );
 
   const [isLoading, setIsLoading] = useState(true);
+  const userCart = useSelector((state) => state?.carts?.cart_items);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     const fetchOpportunities = async () => {
@@ -25,6 +28,13 @@ const AllOpportunities = () => {
 
     fetchOpportunities();
   }, [dispatch]);
+
+  const handleAddToCart = (opportunityId) => {
+    dispatch(addToCartThunk(userCart?.id, opportunityId)).then(() =>
+      setReload(!reload)
+    );
+    window.location.href = "/carts";
+  };
 
   return (
     <div className="opportunities-container">
@@ -49,6 +59,12 @@ const AllOpportunities = () => {
             <NavLink to={`/opportunities/${opportunity.id}`}>
               <button>View Details</button>
             </NavLink>
+            <button
+              className="add-to-cart-button"
+              onClick={() => handleAddToCart(opportunity.id)}
+            >
+              Add to Cart
+            </button>
           </div>
         ))
       ) : (

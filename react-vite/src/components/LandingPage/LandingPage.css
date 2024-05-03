@@ -52,6 +52,25 @@ h3 {
   border-radius: 5px;
 }
 
+.add-to-cart-button {
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 10px;
+  background-color: #6b9ee1;
+  color: #111;
+  border: 1px solid #a1badb;
+  padding: 8px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  position: relative;
+}
+
+.add-to-cart-button:hover {
+  background-color: #acb2b8;
+}
+
 @media screen and (max-width: 915px) {
   .opportunity-container {
       flex-basis: calc(50% - 20px);

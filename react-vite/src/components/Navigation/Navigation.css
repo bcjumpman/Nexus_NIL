@@ -7,6 +7,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  border-bottom-color: #0f0b0b;
 }
 
 /* Logo */
@@ -20,14 +21,23 @@ nav {
   height: auto;
 }
 
-/* Profile Button */
-.profile-button {
-  margin-left: 5px;
-  border-radius: 5px;
-  color:#e6e6e6;
+/* Additional Links */
+.additional-links {
+  background-color: #4182d8;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
 }
 
-.profile-button button {
+/* Profile Button */
+.profile-button, .cart-button {
+  margin-left: 5px;
+  border-radius: 5px;
+  /* color:#e6e6e6; */
+
+}
+
+.profile-button button, .cart-button button {
   border: none;
   background-color: #4182d8;
   color: #090808;
@@ -38,9 +48,17 @@ nav {
   font-size: 16px;
 }
 
+.profile-button button:hover {
+  background-color: rgba(3, 15, 16, 0.2);
+}
+
+.cart-button button:hover {
+  background-color: rgba(3, 15, 16, 0.2);
+}
+
 ul.profile-dropdown {
   position: absolute;
-  /* background-color: #fff; */
+  /* background-color: #4182d8; */
   color: #011c2e;
   font-weight: 50px;
   border: 1px solid #e6e6e6;;
@@ -53,35 +71,165 @@ ul.profile-dropdown {
   overflow-y: hidden;
   text-overflow: ellipsis;
   right: 80px;
-}
-
-
-ul.profile-dropdown li:hover {
-  text-decoration: underline;
-}
-
-ul.profile-dropdown {
   list-style-type: none;
+  text-align: center;
+
 }
 
-ul.profile-dropdown .logout button {
+ul.profile-dropdown li.manage-account button {
+  background-color: #7d51a6c3;
   font-weight: 400;
   font-style: normal;
   font-size: 8px;
-  color: #e6e6e6;;
-  background-color: #e6e6e6;;
+  padding: 8px;
+}
+
+ul.profile-dropdown .manage-account button:hover{
+  background-color: #8b7a9cc3;
+}
+
+
+ul.profile-dropdown li.logout button {
+  background-color: #7d51a6c3;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 8px;
   padding: 8px;
 }
 
 ul.profile-dropdown .logout button:hover{
-  background-color: #e0101093;
+  background-color: #8b7a9cc3;
 }
 
+/* Cart */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100%;
+  background-color: #4182d8;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  border-radius: 20px;
+  border: .3px solid black;
+  align-items: center;
+  display: block;
+  text-align: center;
+}
+
+.cart-sidebar button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: .3px black solid;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 10px;
+  display: inline-flex;
+}
+
+.cart-sidebar.open {
+  transform: translateX(0%);
+}
+
+.toggle-cart {
+  font-weight: 400;
+  font-style: normal;
+  background-color: #4381d7;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-left: auto;
+}
+
+.close-cart {
+  background-color: #4381d7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.view-cart {
+  background-color: #3098d4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.cart-content .cart-action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-content .cart-action-buttons button {
+  flex: 0 0 auto;
+}
+
+/* Styles for cart content */
+.cart-content {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 50px;
+  flex-direction: column;
+  padding: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 100px);
+  color: black;
+}
+
+.cart-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-content h2 {
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
+.cart-item {
+  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+  min-width: 150px;
+}
+
+.cart-item button {
+  margin: 1px;
+}
+
+.cart-item-delete {
+  padding: 5px;
+}
+
+p.cart-item-name {
+  font-size: 8px;
+}
+
+.cart-item-quantity button {
+  padding: 1px 10px;
+  font-size: 8px;
+}
 
 /* Types */
 .type-section ul {
   display: flex;
   list-style: none;
+  background-color: #4182d8
 }
 
 .type-section ul li {
@@ -91,6 +239,7 @@ ul.profile-dropdown .logout button:hover{
 .type-section ul li a {
   color: #0f0b0b;
   text-decoration: none;
+  background-color: #4182d8
 }
 
 .type-section ul li a:hover {

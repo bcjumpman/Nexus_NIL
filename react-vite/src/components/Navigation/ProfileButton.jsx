@@ -53,7 +53,17 @@ function ProfileButton() {
             <>
               <li>{user.username}</li>
               <li>{user.email}</li>
-              <li>
+              <li className="manage-account">
+                <button
+                  onClick={() => {
+                    window.location.href = "/manage";
+                    closeMenu();
+                  }}
+                >
+                  Manage Account
+                </button>
+              </li>
+              <li className="logout">
                 <button onClick={logout}>Log Out</button>
               </li>
             </>

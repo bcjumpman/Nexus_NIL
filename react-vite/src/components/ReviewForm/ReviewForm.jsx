@@ -271,6 +271,7 @@ const CreateNewReview = ({ buttonName, updatingReview }) => {
   const [submitted, setSubmitted] = useState(false);
   const [hover, setHover] = useState(null);
 
+  console.log("OPPORTUNITY ID>>>>", opportunityId);
   useEffect(() => {
     if (updatingReview) {
       setDescription(updatingReview.description);
@@ -278,7 +279,6 @@ const CreateNewReview = ({ buttonName, updatingReview }) => {
       setVerifiedBooking(updatingReview.verified_booking);
     }
   }, [updatingReview]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -301,12 +301,12 @@ const CreateNewReview = ({ buttonName, updatingReview }) => {
 
     try {
       const result = await dispatch(action);
-      console.log("RESULT>>>", result);
+      // console.log("RESULT>>>", result);
       if (result.error) {
         setValidations({ message: result.error });
       } else {
         if (reviewId)
-          navigate(`/opportunities/${updatingReview.opportunityId}`);
+          navigate(`/opportunities/${updatingReview.opportunity_id}`);
         else {
           navigate(`/opportunities/${opportunityId}`);
         }

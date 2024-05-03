@@ -1,18 +1,24 @@
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProfileButton from "./ProfileButton";
 import { useSelector, useDispatch } from "react-redux";
 import { loadAllThunk } from "../../redux/opportunities";
+import CartManagement from "../Cart/Cart";
 import "./Navigation.css";
 
 function Navigation() {
   const dispatch = useDispatch();
+  const [showCart, setShowCart] = useState(false);
   const allOpportunities = useSelector(
     (state) => state.opportunities.opportunities.opportunities
   );
   useEffect(() => {
     dispatch(loadAllThunk());
   }, [dispatch]);
+
+  const toggleCart = () => {
+    setShowCart(!showCart);
+  };
 
   const types = allOpportunities
     ? [...new Set(allOpportunities.map((opportunity) => opportunity.type))]
@@ -52,6 +58,26 @@ function Navigation() {
       <div className="additional-links">
         <div className="profile-button">
           <ProfileButton />
+        </div>
+        <div className="cart-button">
+          <button className="toggle-cart" onClick={toggleCart}>
+            Cart
+          </button>
+          <div className={`cart-sidebar ${showCart ? "open" : ""}`}>
+            <button className="close-cart" onClick={toggleCart}>
+              Close
+            </button>
+            <button
+              className="view-cart"
+              onClick={() => (window.location.href = "/carts")}
+            >
+              View Cart
+            </button>
+            <div className="cart-content">
+              {/* Cart items */}
+              <CartManagement />
+            </div>
+          </div>
         </div>
       </div>
     </nav>

@@ -7,6 +7,7 @@ import DeleteReview from "../components/DeleteReviews/DeleteReviews";
 import AllOpportunities from "../components/LandingPage/LandingPage";
 import OpportunityDetailsPage from "../components/OpportunityDetails/OpportunityDetails";
 import OpportunityReviews from "../components/OpportunityReviews/OpportunityReviews";
+import CartManagement from "../components/Cart/Cart";
 import Layout from "./Layout";
 
 export const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "reviews/:reviewId/delete",
         element: <DeleteReview />,
+      },
+      {
+        path: "carts",
+        element: <CartManagement />,
       },
       {
         path: "*",

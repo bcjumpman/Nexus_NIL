@@ -16,7 +16,7 @@ h1 {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #ddd;
     max-width: 500px;
   }
 
@@ -77,9 +77,9 @@ h1 {
     font-weight: 400;
     font-style: normal;
     font-size: 10px;
-    background-color: #f0c14b;
+    background-color: #6b9ee1;
     color: #111;
-    border: 1px solid #a88734;
+    border: 1px solid #a1badb;
     padding: 8px 16px;
     border-radius: 3px;
     cursor: pointer;
@@ -92,7 +92,7 @@ h1 {
   }
 
 
-  .review-verified-purchase {
+  /* .review-verified-purchase {
     background-color: #c0e1f7;
     color: #0073e6;
 
@@ -101,16 +101,15 @@ h1 {
     border-radius: 3px 12px 12px;
     display: inline-block;
     margin-top: 10px;
-  }
+  } */
 
 
   .edit-review, .delete-review {
-
     font-weight: 400;
     font-style: normal;
     font-size: 10px;
     background-color: #a7a7a7;
-    color: #e74747;
+    color: #020a12;
     border: none;
     padding: 8px 16px;
     border-radius: 3px;
@@ -121,7 +120,7 @@ h1 {
   }
 
   .edit-review:hover{
-    background-color: #5ec36b;
+    background-color: #4d38b7;
   }
 
   .delete-review:hover {

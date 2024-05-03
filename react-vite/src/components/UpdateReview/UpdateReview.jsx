@@ -7,9 +7,11 @@ import CreateNewReview from "../ReviewForm/ReviewForm";
 const UpdateReview = () => {
   const dispatch = useDispatch();
   const { reviewId } = useParams();
-  const reviews = useSelector((state) => state?.reviews.reviews);
-  const review = reviews.find((review) => review.id === +reviewId);
-  console.log("review>>>", reviews);
+  const reviews = useSelector((state) => state?.reviews.review);
+  // const review = reviews.find((review) => review.id === +reviewId);
+  // console.log("STATE>>>", state);
+  console.log("REVIEWS>>>", reviews);
+  const review = reviews;
 
   useEffect(() => {
     dispatch(getReviewById(reviewId));

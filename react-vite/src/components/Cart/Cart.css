@@ -1,0 +1,97 @@
+
+body,
+h4 {
+  font-weight: 400;
+  font-style: normal;
+}
+
+.thumbnail {
+  width: 30%;
+  height: 30%;
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  white-space: nowrap;
+}
+
+.cart-item {
+  font-weight: 400;
+  font-style: normal;
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.cart-item img {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-name {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.cart-item-rate {
+  font-size: 16px;
+  color: #007185;
+}
+
+
+.cart-item-delete {
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 10px;
+  background-color: #f0c14b;
+  color: #111;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 20px;
+}
+
+.cart-item-delete button:hover {
+  background-color: #d2ac2a;
+}
+
+.cart-total {
+  margin-top: 20px;
+}
+
+.cart-action-buttons button {
+  font-family: "Spectral SC", serif;
+  font-size: 10px;
+  background-color: #f0c14b;
+  color: #111;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 20px;
+}
+
+.cart-action-buttons button:hover {
+  background-color: #d2ac2a;
+}
+
+.spinner {
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

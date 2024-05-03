@@ -148,24 +148,6 @@ export const updateReviewThunk = (reviewId, reviewData) => async (dispatch) => {
 };
 
 //* Delete a Review Thunk
-// export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-//   try {
-//     const response = await fetch(`/api/reviews/${reviewId}`, {
-//       method: "DELETE",
-//     });
-
-//     if (response.ok) {
-//       dispatch(deleteReview(reviewId));
-//       return { success: true };
-//     } else {
-//       throw new Error("Failed to delete review.");
-//     }
-//   } catch (error) {
-//     return { error: error.message };
-//   }
-// };
-
-//* Delete a Review Thunk
 export const deleteReviewThunk = (reviewId) => async (dispatch) => {
   try {
     const response = await fetch(`/api/reviews/${reviewId}`, {
@@ -173,7 +155,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
     });
 
     if (response.ok) {
-      dispatch(deleteReview(reviewId)); // Only dispatch on success
+      dispatch(deleteReview(reviewId));
       return { success: "Review deleted successfully" };
     } else {
       const data = await response.json();
@@ -226,7 +208,8 @@ export const allReviewsOnOneOpportunityThunk =
 // REDUCERS
 const initialState = {
   reviews: [],
-  reviewDetails: {},
+  review: null,
+  reviewDetails: [], //* might need to change this back to {}
   loading: false,
   error: null,
 };
@@ -254,9 +237,10 @@ const reviewReducer = (state = initialState, action) => {
         ),
       };
     case GET_ONE_REVIEW:
+      // console.log("REVIEWS THUNK", reviews);
       return { ...state, reviews: action.data };
     case LOAD_UPDATE:
-      return { ...state, reviews: action.data };
+      return { ...state, review: action.data };
     default:
       return state;
   }
