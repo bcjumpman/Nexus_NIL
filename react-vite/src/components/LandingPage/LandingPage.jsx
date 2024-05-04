@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllThunk } from "../../redux/opportunities";
 import { addToCartThunk } from "../../redux/addtocart";
-import { NavLink } from "react-router-dom";
+import { getAllUsersCartsThunk } from "../../redux/carts";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./LandingPage.css";
 
 const AllOpportunities = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-  const userCart = useSelector((state) => state?.carts?.cart_items);
+  const userCarts = useSelector((state) => state?.carts.carts);
+  const singleCart = userCarts[0];
   const [reload, setReload] = useState(false);
+  const navigate = useNavigate();
   const allOpportunities = useSelector(
     (state) => state.opportunities.opportunities.opportunities
   );
@@ -18,6 +21,7 @@ const AllOpportunities = () => {
     const fetchOpportunities = async () => {
       try {
         await dispatch(loadAllThunk());
+        await dispatch(getAllUsersCartsThunk());
       } catch (error) {
         console.error("Failed to load opportunities:", error);
       } finally {
@@ -29,10 +33,13 @@ const AllOpportunities = () => {
   }, [dispatch]);
 
   const handleAddToCart = (opportunityId) => {
-    dispatch(addToCartThunk(userCart?.id, opportunityId)).then(() =>
-      setReload(!reload)
-    );
-    window.location.href = "/carts";
+    // console.log("HELLOOOO>>>>>.");
+    console.log("SINGLE CART>>>>", singleCart);
+    dispatch(addToCartThunk(singleCart?.id, opportunityId));
+    // .then(() =>
+    // setReload(!reload)
+    // );
+    navigate("/carts");
   };
 
   return (

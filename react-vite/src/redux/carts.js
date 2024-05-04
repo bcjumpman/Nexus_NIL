@@ -30,6 +30,7 @@ export const getAllUsersCartsThunk = () => async (dispatch) => {
     }
 
     const data = await response.json();
+    console.log("DATA>>>", data);
     dispatch(getAllUsersCarts(data));
   } catch (error) {
     console.error("Error fetching carts:", error);

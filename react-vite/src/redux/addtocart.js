@@ -21,6 +21,10 @@ export const removeFromCart = (item) => ({
 
 //* Adding opps to cart thunk
 export const addToCartThunk = (cart_id, opportunity_id) => async (dispatch) => {
+  console.log(">>>>>>>>HELLO THUNK");
+  // To add mulitple opps, we should get rid of opp_id and replace
+  // with opp arr []. ITs an array of opportunities and pass
+  // into stringify method cart_id, opportunities_array
   try {
     const response = await fetch("/api/opportunities/cart/add_opportunity", {
       method: "POST",
@@ -29,7 +33,7 @@ export const addToCartThunk = (cart_id, opportunity_id) => async (dispatch) => {
       },
       body: JSON.stringify({ cart_id, opportunity_id }),
     });
-    console.log("RESPONSE", response);
+    console.log("RESPONSE>>>>>>>", response);
     if (!response.ok) {
       throw new Error("Failed to add opportunity to cart.");
     }

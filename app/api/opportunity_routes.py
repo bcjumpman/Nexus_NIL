@@ -131,29 +131,31 @@ def createReview(id):
 @login_required
 def get_cart():
     if request.method == 'GET':
-        cart = Cart.query.filter_by(user_id=current_user.id).first()
-        if not cart:
+        carts = Cart.query.filter_by(user_id=current_user.id).all()
+        if not carts:
             return jsonify({'message': 'Cart not found for the current user.'}), 404
 
         # Fetch associated cart items with subtotal
-        cart_items = AddToCart.query.filter_by(cart_id=cart.id).all()
+        # cart_items = AddToCart.query.filter_by(cart_id=cart.id).all()
 
         # Serialize cart items and calculate subtotal
         serialized_cart = []
         subtotal = 0.00
-        for item in cart_items:
-            subtotal += item.subtotal
-            serialized_cart.append({
-                'id': item.id,
-                'cart_id': item.cart_id,
-                'opportunity_id': item.opportunity_id,
-                'quantity_added': item.quantity_added,
-                'subtotal': item.subtotal,
-                'created_at': item.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-                'updated_at': item.updated_at.strftime("%Y-%m-%d %H:%M:%S")
-            })
+        # for item in cart_items:
+        #     subtotal += item.subtotal
+        #     serialized_cart.append({
+        #         'id': item.id,
+        #         'cart_id': item.cart_id,
+        #         'opportunity_id': item.opportunity_id,
+        #         'quantity_added': item.quantity_added,
+        #         'subtotal': item.subtotal,
+        #         'created_at': item.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+        #         'updated_at': item.updated_at.strftime("%Y-%m-%d %H:%M:%S")
+        #     })
 
-        return jsonify({'cart_items': serialized_cart}), 200
+        return jsonify({'cart_items': serialized_cart,
+                        'carts': [cart.to_dict() for cart in carts]  }), 200
+
 
     elif request.method == 'POST':
         cart = Cart.query.filter_by(user_id=current_user.id).first()
@@ -205,7 +207,9 @@ def cart_history():
 def add_opportunity_to_cart():
     data = request.get_json()
     opportunity_id = data.get('opportunity_id')
-    quantity = data.get('quantity', 1)
+    cart_id = data.get('cart_id')
+    print("OPPORTUNITY ID & CART", opportunity_id, cart_id)
+    # quantity = data.get('quantity', 1)
 
     if not opportunity_id:
         return jsonify({'error': 'Opportunity ID is required.'}), 400
@@ -217,25 +221,23 @@ def add_opportunity_to_cart():
     if opportunity.rate is None:
         return jsonify({'error': 'Rate is missing.'}), 400
 
-    cart = Cart.query.filter_by(user_id=current_user.id).first()
+    cart = Cart.query.get(cart_id)
     if not cart:
         cart = Cart(user_id=current_user.id)
         db.session.add(cart)
         db.session.commit()
 
-    subtotal = opportunity.price
-
-    existing_item = AddToCart.query.filter_by(cart_id=cart.id, opportunity_id=opportunity_id).first()
-    if existing_item:
-        existing_item.subtotal += subtotal
-    else:
-        new_item = AddToCart(cart_id=cart.id, opportunity_id=opportunity_id, quantity_added=quantity, subtotal=subtotal)
-        db.session.add(new_item)
+    subtotal = opportunity.rate
+# to add multiple opps. I will need to iterate through a list of opportunities
+# inside the for looop invoke addToCart class.
+#  line 234 & 235 for every opp
+    print("CART ID", cart_id)
+    new_item = AddToCart(cart_id=cart_id, opportunity_id=opportunity_id, subtotal=subtotal)
+    db.session.add(new_item)
 
     db.session.commit()
 
     return jsonify({'message': f'Opportunity successfully added to your cart.'}), 200
-
 
 # * Updating cart and save for later
 @opportunity_routes.route('/cart/update', methods=['PUT'])
