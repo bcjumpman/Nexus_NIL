@@ -60,7 +60,7 @@ function ProfileButton() {
                     closeMenu();
                   }}
                 >
-                  Manage Account
+                  Manage Opportunities
                 </button>
               </li>
               <li className="logout">

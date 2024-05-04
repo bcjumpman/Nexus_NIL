@@ -26,6 +26,17 @@ def get_one_opportunity(id):
     return opportunity.to_dict(), 200
 
 
+#* Get opps of user
+@opportunity_routes.route('/manage')
+@login_required
+def owned_opportunities():
+    opportunities = Opportunity.query.filter_by(user_id=current_user.id).all()
+    opportunities_data = [opportunity.to_dict() for opportunity in opportunities]
+
+    return jsonify({'opportunities': opportunities_data}), 200
+
+
+
 # * Create opportunity
 @opportunity_routes.route('/new', methods=['POST'])
 @login_required
@@ -67,15 +78,71 @@ def create_listing():
         return jsonify({'errors': errors}), 400
 
 
+#* update opp
+@opportunity_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_listing(id):
+    opportunity = Opportunity.query.get(id)
+
+    form = Opportunity()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if not opportunity:
+        return jsonify({'error': 'Unable to locate opportunity'}), 404
+
+    if opportunity.user_id != current_user.id:
+        return jsonify({'error:' 'You are not authorized to make changes to this opportunity.'}), 403
+
+    if form.validate_on_submit():
+        if 'image_url' in request.files:
+            # Handle image upload and update image URL
+            upload_request = request.files['image_url']
+            upload_request.filename = get_unique_filename(upload_request.filename)
+            upload = upload_file_to_s3(upload_request)
+
+            if 'url' not in upload:
+                return jsonify({'error': 'Image upload failed.'}), 500
+            opportunity.image = upload['url']
+
+        # Update
+        opportunity.title = form.title.data
+        opportunity.rate = form.rate.data
+        opportunity.type = form.type.data
+        opportunity.description = form.description.data
+
+        db.session.commit()
+
+        return jsonify({"message": "Opportunity has been updated successfully."}), 200
+    else:
+        return jsonify({'errors': form.errors}), 400
+
+
+#* Delete
+@opportunity_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_listing(id):
+    opportunity = Opportunity.query.get(id)
+
+    if not opportunity:
+        return jsonify({'error': 'Unable to locate opportunity'}), 404
+
+    if opportunity.user_id != current_user.id:
+        return jsonify({'error': 'You are not authorized to delete this opportunity.'}), 403
+
+    db.session.delete(opportunity)
+    db.session.commit()
+
+    return jsonify({'message': 'Opportunity listing successfully deleted.'}), 200
+
 # * Search by type
-@opportunity_routes.route('/types/<string:type>')
-def viewType(type):
-    orderOpps = Opportunity.query.filter(Opportunity.type == type).all()
+# @opportunity_routes.route('/types/<string:type>')
+# def viewType(type):
+#     orderOpps = Opportunity.query.filter(Opportunity.type == type).all()
 
-    if not orderOpps:
-        return jsonify({'error': 'No opportunities were found with your type.'}), 400
+#     if not orderOpps:
+#         return jsonify({'error': 'No opportunities were found with your type.'}), 400
 
-    return jsonify({'opportunities': [opportunity.to_dict() for opportunity in orderOpps]}), 200
+#     return jsonify({'opportunities': [opportunity.to_dict() for opportunity in orderOpps]}), 200
 
 
 

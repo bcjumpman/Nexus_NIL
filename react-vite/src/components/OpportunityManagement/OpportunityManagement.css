@@ -1,0 +1,95 @@
+.opportunity-management-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .opportunity-management-container .page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .opportunity-management-container .product-item {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .opportunity-management-container .product-image {
+    width: auto;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .opportunity-management-container .opportunity-details {
+    flex: 1;
+    margin: 8px;
+  }
+
+  .opportunity-management-container .opportunity-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .opportunity-management-container .opportunity-description {
+    margin-bottom: 10px;
+  }
+
+  .opportunity-management-container .opportunity-type {
+    font-style: italic;
+    color: #666;
+  }
+
+  .opportunity-management-container .opportunity-actions {
+    margin-top: 10px;
+  }
+
+  .opportunity-management-container .edit-button {
+    background-color: #007bffc0;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .opportunity-management-container .delete-button {
+    background-color: #ff0000d2;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .opportunity-management-container .edit-button:hover{
+    background-color: #0056b3;
+  }
+
+  .opportunity-management-container .delete-button:hover {
+    background-color: red;
+  }
+
+  .add-opportunity-button {
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 10px;
+    background-color: #05aedd;
+    color: #111;
+    border: 1px solid #1f73e0;
+    padding: 8px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    position: relative;
+  }
+
+  .add-opportunity-button:hover {
+    background-color: #008cff;
+  }

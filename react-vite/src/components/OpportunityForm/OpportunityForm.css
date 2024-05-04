@@ -1,0 +1,70 @@
+.create-update-opportunity-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #e6e6e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .create-update-opportunity-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .create-update-opportunity-form input[type="text"],
+  .create-update-opportunity-form input[type="number"],
+  .create-update-opportunity-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .body-textarea {
+    resize: vertical;
+  }
+
+
+
+  .Opportunity-Btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Opportunity-Submit-btn,
+  .back-to-opportunity {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .Opportunity-Submit-btn {
+    background-color: #089d00;
+    color: #fff;
+  }
+
+  .back-to-opportunity {
+    background-color: #0066c0;
+    color: #fff;
+  }
+
+  .back-to-opportunity:hover,
+  .Opportunity-Submit-btn:hover {
+    opacity: 0.8;
+  }
+
+  .loading {
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .create-update-opportunity-form {
+      padding: 10px;
+    }
+  }

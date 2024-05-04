@@ -1,108 +1,10 @@
-// // Action type
-// export const LOAD_ALL_OPPORTUNITIES = "opportunities/LOAD_ALL";
-// export const GET_ONE_OPPORTUNITY = "opportunities/GET_ONE";
-// export const ADD_NEW_OPPORTUNITY = "opportunities/ADD_NEW";
-
-// //  Action creator
-// export const loadAllOpportunities = (data) => ({
-//   type: LOAD_ALL_OPPORTUNITIES,
-//   data,
-// });
-
-// export const getOneOpportunity = (data) => ({
-//   type: GET_ONE_OPPORTUNITY,
-//   data,
-// });
-
-// export const addNewOpportunity = (data) => ({
-//   type: ADD_NEW_OPPORTUNITY,
-//   data,
-// });
-
-// // THUNKS
-
-// //* Load all opportunities thunk
-// export const loadAllThunk = () => async (dispatch) => {
-//   try {
-//     const response = await fetch("/api/opportunities", {
-//       method: "GET",
-//     });
-//     if (!response.ok) {
-//       throw new Error("Failed to load opportunities.");
-//     }
-
-//     const data = await response.json();
-
-//     dispatch(loadAllOpportunities(data));
-//   } catch (error) {
-//     return { error: error.message };
-//   }
-// };
-
-// //* Get one opportunity
-// export const getOneOpportunityThunk = (opportunityId) => async (dispatch) => {
-//   try {
-//     // print("OPPORTUNITY ID>>>", opportunityId);
-//     const response = await fetch(`/api/opportunities/${opportunityId}`);
-
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch opportunity.");
-//     }
-
-//     const data = await response.json();
-
-//     dispatch(getOneOpportunity(data));
-//   } catch (error) {
-//     return { error: error.message };
-//   }
-// };
-
-// //*  Add new opportunity
-// export const addNewOpportunityThunk = (newOpportunity) => async (dispatch) => {
-//   try {
-//     const response = await fetch(`/api/opportunities`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(newOpportunity),
-//     });
-
-//     if (response.ok) {
-//       const data = await response.json();
-
-//       dispatch(addNewOpportunity(data));
-//     } else {
-//       throw new Error("Failed to add new opportunity.");
-//     }
-//   } catch (error) {
-//     return { error: error.message };
-//   }
-// };
-
-// // REDUCERS
-
-// //* Action reducer
-// const opportunityReducer = (state = {}, action) => {
-//   switch (action.type) {
-//     case LOAD_ALL_OPPORTUNITIES: {
-//       return { ...state, ...action.data };
-//     }
-//     case GET_ONE_OPPORTUNITY: {
-//       return { ...state, ...action.data };
-//     }
-//     case ADD_NEW_OPPORTUNITY: {
-//       return { ...state, ...action.data };
-//     }
-//     default:
-//       return state;
-//   }
-// };
-
-// export default opportunityReducer;
-
 // Action Types
 export const LOAD_ALL_OPPORTUNITIES = "opportunities/LOAD_ALL";
 export const GET_ONE_OPPORTUNITY = "opportunities/GET_ONE";
+export const OWNED_OPPS = "opportunities/OWNED_OPPS";
 export const ADD_NEW_OPPORTUNITY = "opportunities/ADD_NEW";
+export const EDIT_A_OPPORTUNITY = "opportunities/EDIT";
+export const DELETE_A_OPPORTUNITY = "opportunities/DELETE";
 export const SET_LOADING = "opportunities/SET_LOADING";
 export const SET_ERROR = "opportunities/SET_ERROR";
 
@@ -117,8 +19,22 @@ export const getOneOpportunity = (data) => ({
   data,
 });
 
+export const loadOwnwedOpps = (data) => ({
+  type: OWNED_OPPS,
+  data,
+});
+
 export const addNewOpportunity = (data) => ({
   type: ADD_NEW_OPPORTUNITY,
+  data,
+});
+export const editAOpportunity = (data) => ({
+  type: EDIT_A_OPPORTUNITY,
+  data,
+});
+
+export const deleteAOpportunity = (data) => ({
+  type: DELETE_A_OPPORTUNITY,
   data,
 });
 
@@ -187,6 +103,21 @@ export const getOneOpportunityThunk = (opportunityId) => async (dispatch) => {
   dispatch(setLoading(false));
 };
 
+export const loadOwnedOppsThunk = () => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/opportunities/manage`);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch opportunities.");
+    }
+
+    const data = await response.json();
+    dispatch(loadOwnwedOpps(data));
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 export const addNewOpportunityThunk = (newOpportunity) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
@@ -206,6 +137,41 @@ export const addNewOpportunityThunk = (newOpportunity) => async (dispatch) => {
   dispatch(setLoading(false));
 };
 
+export const editOppThunk = (opportunityId, editOpp) => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/opportunities/${opportunityId}/edit`, {
+      method: "PUT",
+      body: editOpp,
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update opportunity");
+    }
+
+    const data = await response.json();
+    dispatch(editAOpportunity(data));
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+export const deleteOppThunk = (opportunityId) => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/opportunities/${opportunityId}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      dispatch(deleteAOpportunity(opportunityId));
+      return { success: true };
+    } else {
+      throw new Error("Failed to delete opportunity.");
+    }
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 // Reducer
 const initialState = {
   opportunities: [],
@@ -221,12 +187,25 @@ const opportunityReducer = (state = initialState, action) => {
       return { ...state, opportunities: action.payload };
     case GET_ONE_OPPORTUNITY:
       return { ...state, opportunity: action.data };
+    case OWNED_OPPS:
+      return {
+        ...state,
+        ...action.data,
+      };
     case ADD_NEW_OPPORTUNITY:
       return {
         ...state,
         opportunities: [...state.opportunities, action.data],
         error: null,
       };
+    case EDIT_A_OPPORTUNITY: {
+      return action.data;
+    }
+    case DELETE_A_OPPORTUNITY: {
+      const newState = { ...state };
+      delete newState[action.data];
+      return newState;
+    }
     case SET_LOADING:
       return { ...state, loading: action.loading };
     case SET_ERROR:

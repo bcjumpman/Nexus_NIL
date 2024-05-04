@@ -7,8 +7,11 @@ import DeleteReview from "../components/DeleteReviews/DeleteReviews";
 import AllOpportunities from "../components/LandingPage/LandingPage";
 import OpportunityDetailsPage from "../components/OpportunityDetails/OpportunityDetails";
 import OpportunityReviews from "../components/OpportunityReviews/OpportunityReviews";
+import OpportunityManagement from "../components/OpportunityManagement/OpportunityManagement";
 import CartManagement from "../components/Cart/Cart";
 import Layout from "./Layout";
+import UpdateOpportunity from "../components/OpportunityForm/UpdateOpportunity";
+import AddOpportunity from "../components/OpportunityForm/AddOpportunity";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +32,18 @@ export const router = createBrowserRouter([
       {
         path: "opportunities/:opportunityId",
         element: <OpportunityDetailsPage />,
+      },
+      {
+        path: "/manage",
+        element: <OpportunityManagement />,
+      },
+      {
+        path: "/opportunities/manage/new",
+        element: <AddOpportunity />,
+      },
+      {
+        path: "/opportunities/manage/:opportunityId/edit",
+        element: <UpdateOpportunity />,
       },
       {
         path: "opportunities/:opportunityId/reviews",
