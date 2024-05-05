@@ -10,10 +10,10 @@ nav {
   border-bottom-color: #0f0b0b;
 }
 
-/* Logo */
 .navigation-logo-container {
   display: flex;
   align-items: center;
+  background-color: #4182d8;
 }
 
 .nav-bar-logo {
@@ -21,7 +21,7 @@ nav {
   height: auto;
 }
 
-/* Additional Links */
+
 .additional-links {
   background-color: #4182d8;
   display: flex;
@@ -29,7 +29,7 @@ nav {
   align-items: center;
 }
 
-/* Profile Button */
+
 .profile-button, .cart-button {
   margin-left: 5px;
   border-radius: 5px;
@@ -40,7 +40,7 @@ nav {
 
 .profile-button button, .cart-button button {
   border: none;
-  /* background-color: #4182d8; */
+  background-color: #4182d8;
   color: #090808;
   cursor: pointer;
   padding: 16px;
@@ -60,7 +60,7 @@ nav {
 
 ul.profile-dropdown {
   position: absolute;
-  /* background-color: #4182d8; */
+  background-color: #e6e6e6;
   color: #011c2e;
   font-weight: 50px;
   border: 1px solid #e6e6e6;;
@@ -84,6 +84,8 @@ ul.profile-dropdown li.manage-account button {
   font-style: normal;
   font-size: 8px;
   padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 ul.profile-dropdown .manage-account button:hover{
@@ -109,7 +111,7 @@ ul.profile-dropdown .logout button:hover{
   right: 0;
   width: 400px;
   height: 100%;
-  background-color: #4182d8;
+  background-color: #e6e6e6;
   z-index: 1000;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;

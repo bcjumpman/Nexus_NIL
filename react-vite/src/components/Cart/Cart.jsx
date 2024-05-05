@@ -248,7 +248,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import * as CartActions from "../../redux/carts";
 import * as OpportunityActions from "../../redux/opportunities";
-// import { updateCartThunk } from "../../redux/addtocart";
+import { updateCartThunk } from "../../redux/addtocart";
 import { useModal } from "../../context/Modal";
 import { removeFromCartThunk } from "../../redux/addtocart";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
@@ -332,17 +332,17 @@ const CartManagement = () => {
   // };
 
   //* updating cart
-  // const handleUpdateCart = () => {
-  //   const updatedCart = userCart.map((item) => ({
-  //     cart_id: item.cart_id,
-  //     opportunity_id: item.opportunity_id,
-  //   }));
-  //   dispatch(updateCartThunk(updatedCart)).then(() => setReload(!reload));
-  // };
+  const handleUpdateCart = () => {
+    const updatedCart = userCart.map((item) => ({
+      cart_id: item.cart_id,
+      opportunity_id: item.opportunity_id,
+    }));
+    dispatch(updateCartThunk(updatedCart)).then(() => setReload(!reload));
+  };
 
   //* deleting opp from cart
   const handleDeleteItem = async (cartItemId) => {
-    // console.log("CART ITEM ID>>>", cartItemId.id);
+    console.log("CART ITEM ID>>>", cartItemId.id);
     await dispatch(removeFromCartThunk(cartItemId.id)).then(() =>
       setReload(!reload)
     );
@@ -443,14 +443,14 @@ const CartManagement = () => {
             ).toFixed(0)}
           </p>
           <div className="cart-action-buttons">
-            {/* <button
+            <button
               onClick={() => {
                 handleUpdateCart();
                 window.location.href = "/";
               }}
             >
               Save for Later
-            </button> */}
+            </button>
             {/* Conditionally render checkout button */}
             {CartItems.length > 0 && (
               <OpenModalButton

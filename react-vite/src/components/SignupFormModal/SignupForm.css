@@ -3,8 +3,6 @@
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
-    background-color: #fff;
-    font-family: 'Spectral SC', serif;
   }
 
   .signup-form-container h1 {
@@ -34,7 +32,6 @@
     border: 1px rgba(0, 0, 0, 0.209) solid;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
-    background-color: #ffffff;
     color: #fff;
     cursor: pointer;
     margin-top: 10px;
@@ -46,10 +43,10 @@
   }
 
   .signup-form-container button[type="submit"]:hover {
-    background-color: #8e65c4;
+    background-color: #3aa943;
   }
 
-  .signupFrom p {
+  .signup-form-container p {
     color: red;
     margin-top: 5px;
     font-size: 14px;
@@ -74,3 +71,7 @@
   .signup-form-container button:hover {
     background-color: #3884d6;
   }
+
+  /* .#modal-content {
+    background-color: ccc;;
+  } */

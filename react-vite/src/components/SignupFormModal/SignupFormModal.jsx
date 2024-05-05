@@ -10,7 +10,7 @@ function SignupFormModal() {
   const [username, setUsername] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
+  // const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -32,7 +32,7 @@ function SignupFormModal() {
         username,
         first_name,
         last_name,
-        phone,
+        // phone,
         password,
       })
     );
@@ -69,7 +69,7 @@ function SignupFormModal() {
               required
             />
           </label>
-          <label>
+          {/* <label>
             Phone:
             <input
               type="text"
@@ -77,7 +77,7 @@ function SignupFormModal() {
               onChange={(e) => setPhone(e.target.value)}
               required
             />
-          </label>
+          </label> */}
           <label>
             Email:
             <input
