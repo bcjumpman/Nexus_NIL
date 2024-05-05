@@ -67,7 +67,7 @@ h4 {
 
 .cart-action-buttons button {
   font-size: 10px;
-  background-color: #12a1e8;
+  background-color: #0ea106;
   color: #111;
   border: none;
   padding: 10px 20px;
@@ -77,5 +77,6 @@ h4 {
 }
 
 .cart-action-buttons button:hover {
-  background-color: #8dc3df;
+  /* background-color: #8dc3df; */
+  opacity: 0.8;
 }

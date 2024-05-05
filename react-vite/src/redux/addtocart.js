@@ -21,7 +21,8 @@ export const removeFromCart = (item) => ({
 
 //* Adding opps to cart thunk
 export const addToCartThunk = (cart_id, opportunity_id) => async (dispatch) => {
-  console.log(">>>>>>>>HELLO THUNK");
+  // console.log(">>>>>>>> CART_ID", cart_id);
+  // console.log(">>>>>>>> OPPORTUNITY_ID", opportunity_id);
   // To add mulitple opps, we should get rid of opp_id and replace
   // with opp arr []. ITs an array of opportunities and pass
   // into stringify method cart_id, opportunities_array
@@ -33,11 +34,12 @@ export const addToCartThunk = (cart_id, opportunity_id) => async (dispatch) => {
       },
       body: JSON.stringify({ cart_id, opportunity_id }),
     });
-    console.log("RESPONSE>>>>>>>", response);
+    console.log("RESPONSE>>>>>>>", cart_id);
     if (!response.ok) {
       throw new Error("Failed to add opportunity to cart.");
     }
     const data = await response.json();
+    console.log("DATA addCartTHUNK>>>>>", data);
     dispatch(addingToCart(data));
   } catch (error) {
     throw new Error("Failed to add opportunity to cart.");
@@ -89,7 +91,7 @@ export const removeFromCartThunk = (cartItemId) => async (dispatch) => {
 const addToCartReducer = (state = {}, action) => {
   switch (action.type) {
     case ADDING_TO_CART:
-      console.log("ACTION DATA", action.data);
+      // console.log("ACTION DATA", action.data);
       return { ...state, ...action.data };
     case UPDATING_CART:
       return { ...state, ...action.data };

@@ -20,7 +20,6 @@ const CreateOpportunityForm = ({ buttonName, updatingOpportunity }) => {
   );
   const [validations, setValidations] = useState({});
   const [submitted, setSubmitted] = useState(false);
-  const [imageLoading, setImageLoading] = useState(false);
 
   useEffect(() => {
     if (updatingOpportunity) {
@@ -40,19 +39,34 @@ const CreateOpportunityForm = ({ buttonName, updatingOpportunity }) => {
     formData.append("type", type);
     formData.append("description", description);
 
-    if (image_url !== null) {
-      formData.append("image_url", image_url);
-    } else {
-      formData.image_url = updatingProduct.image;
-    }
+    // if (image_url !== null) {
+    //   formData.append("image_url", image_url);
+    // } else {
+    //   formData.image_url = updatingOpportunity.image;
+    // }
 
-    setImageLoading(true);
     setSubmitted(true);
 
-    if (description.length <= 10) {
+    if (title.length <= 10) {
       setValidations({
         ...validations,
-        description: "Your description must be greater than 10 characters.",
+        description: "Your title must be greater than 10 characters.",
+      });
+      return;
+    }
+
+    if (description.length <= 20) {
+      setValidations({
+        ...validations,
+        description: "Your description must be greater than 20 characters.",
+      });
+      return;
+    }
+
+    if (rate <= 0) {
+      setValidations({
+        ...validations,
+        description: "Your rate cannot be negative.",
       });
       return;
     }
@@ -97,7 +111,7 @@ const CreateOpportunityForm = ({ buttonName, updatingOpportunity }) => {
           <input
             type="text"
             value={type}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => setType(e.target.value)}
           />
         </label>
         <textarea
@@ -133,7 +147,6 @@ const CreateOpportunityForm = ({ buttonName, updatingOpportunity }) => {
               Back to Opportunity
             </button>
           )}
-          {imageLoading && <p>Loading...</p>}
         </div>
       </form>
     </>

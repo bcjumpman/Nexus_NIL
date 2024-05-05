@@ -4,6 +4,8 @@ import ProfileButton from "./ProfileButton";
 import { useSelector, useDispatch } from "react-redux";
 import { loadAllThunk } from "../../redux/opportunities";
 import CartManagement from "../Cart/Cart";
+import { FaCartShopping } from "react-icons/fa6";
+
 import "./Navigation.css";
 
 function Navigation() {
@@ -61,7 +63,7 @@ function Navigation() {
         </div>
         <div className="cart-button">
           <button className="toggle-cart" onClick={toggleCart}>
-            Cart
+            <FaCartShopping />
           </button>
           <div className={`cart-sidebar ${showCart ? "open" : ""}`}>
             <button className="close-cart" onClick={toggleCart}>

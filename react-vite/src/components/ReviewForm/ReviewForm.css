@@ -1,18 +1,88 @@
 h1 {
     font-size: 24px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .create-update-review-form {
-    border: 1px solid #6b9ee1;
-    /* margin-left: 10px; */
+    /* border: 1px solid #6b9ee1;
     padding: 10px 10px 10px 10px;
     border-radius: 8px;
     width: 600px;
-    align-content: center;
+    align-content: center; */
+
+    margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+
+
 }
 
 .description-textarea {
     display: flex;
     justify-content: center;
 }
+
+
+.create-update-review-form {
+    max-width: 1000px;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+
+.star-rating-field {
+    margin-bottom: 20px;
+  }
+
+  .star-rating {
+    font-size: 24px;
+    cursor: pointer;
+    color: #0c9ee7cd;
+    transition: color 0.2s;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .star-rating:hover {
+    color: #f0c14b;
+  }
+
+
+  .description-textarea {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+  }
+
+
+  .body-textarea {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+  }
+
+
+  .submit-button {
+    margin-right: 10px;
+  }
+
+  /* Submit button */
+  .submit-button {
+    font-size: 10px;
+    padding: 10px 20px;
+    background-color: #089d00;;
+    color: #111;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }

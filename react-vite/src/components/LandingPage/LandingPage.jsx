@@ -9,9 +9,11 @@ import "./LandingPage.css";
 const AllOpportunities = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-  const userCarts = useSelector((state) => state?.carts.carts);
-  const singleCart = userCarts[0];
-  const [reload, setReload] = useState(false);
+  // const userCarts = useSelector((state) => state?.carts.carts);
+  // const singleCart = userCarts;
+  const singleCartId = useSelector((state) => state?.carts?.carts?.[0].id);
+
+  // const [reload, setReload] = useState(false);
   const navigate = useNavigate();
   const allOpportunities = useSelector(
     (state) => state.opportunities.opportunities.opportunities
@@ -30,12 +32,14 @@ const AllOpportunities = () => {
     };
 
     fetchOpportunities();
+    // console.log("USER CARTS>>>>>>> FROM useEffect", getAllUsersCartsThunk());
   }, [dispatch]);
 
   const handleAddToCart = (opportunityId) => {
     // console.log("HELLOOOO>>>>>.");
-    console.log("SINGLE CART>>>>", singleCart);
-    dispatch(addToCartThunk(singleCart?.id, opportunityId));
+    console.log("SINGLE CART ID FROM LANDING>>>>", singleCartId);
+    // console.log("SINGLE CART ID ID FROM LANDING>>>>", cartId);
+    dispatch(addToCartThunk(singleCartId, opportunityId));
     // .then(() =>
     // setReload(!reload)
     // );

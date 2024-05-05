@@ -5,15 +5,6 @@ import { useModal } from "../../context/Modal";
 import { loadOwnedOppsThunk, deleteOppThunk } from "../../redux/opportunities";
 // import "./CreateOpportunity.css";
 
-// Loading Spinner Component
-const LoadingSpinner = () => {
-  return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="spinner"></div>
-    </div>
-  );
-};
-
 const OpportunityManagement = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state?.session?.user);

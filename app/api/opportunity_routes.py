@@ -275,7 +275,7 @@ def add_opportunity_to_cart():
     data = request.get_json()
     opportunity_id = data.get('opportunity_id')
     cart_id = data.get('cart_id')
-    print("OPPORTUNITY ID & CART", opportunity_id, cart_id)
+    print("OPPORTUNITY ID & CART", cart_id)
     # quantity = data.get('quantity', 1)
 
     if not opportunity_id:
@@ -344,10 +344,10 @@ def update_cart():
 
 
 # * Deleting items from cart
-@opportunity_routes.route('/cart/remove/<int:cart_id>', methods=['DELETE'])
+@opportunity_routes.route('/cart/remove/<int:cartItemId>', methods=['DELETE'])
 @login_required
-def remove_from_cart(cart_id):
-    cart_item = AddToCart.query.get(cart_id)
+def remove_from_cart(cartItemId):
+    cart_item = AddToCart.query.get(cartItemId)
 
     if not cart_item:
         return jsonify({'error': 'Cart item not found.'}), 404

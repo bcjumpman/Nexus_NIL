@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { loadOwnedOppsThunk, deleteOppThunk } from "../../redux/opportunities";
 import "./OpportunityManagement.css";

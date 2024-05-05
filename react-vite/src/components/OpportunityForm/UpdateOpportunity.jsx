@@ -7,7 +7,7 @@ import CreateOpportunityForm from "./OpportunitiesForm";
 const UpdateOpportunity = () => {
   const dispatch = useDispatch();
   const { opportunityId } = useParams();
-  const opportunity = useSelector((state) => state?.opportunities);
+  const opportunity = useSelector((state) => state?.opportunities.opportunity);
 
   useEffect(() => {
     if (opportunityId) {
@@ -23,7 +23,7 @@ const UpdateOpportunity = () => {
 
   return (
     <div className="update-opportunity-container">
-      <h1>Update Opportunity</h1>
+      <h1>Update Opportunity #{opportunityId}</h1>
       <CreateOpportunityForm
         updatingOpportunity={opportunity}
         buttonName={buttonName}

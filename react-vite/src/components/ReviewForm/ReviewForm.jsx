@@ -286,7 +286,7 @@ const CreateNewReview = ({ buttonName, updatingReview }) => {
 
     if (description.length <= 10 || rating < 0) {
       setValidations({
-        message: "Please ensure all fields are correctly filled.",
+        message: "Please ensure description and stars are filled.",
       });
       return;
     }
