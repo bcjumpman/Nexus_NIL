@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
-    # phone = db.Column(db.Integer, nullable=True)
+    # phone = db.Column(db.Integer, nullable=False)
     school = db.Column(db.String(255))
     biography = db.Column(db.Text)
     sport = db.Column(db.String(50))
