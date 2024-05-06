@@ -172,18 +172,6 @@ ul.profile-dropdown .logout button:hover{
   justify-content:center;
 }
 
-.cart-content button {
-  /* flex: 0 0 auto; */
-}
-
-.cart-action-buttons {
-
-}
-
-.cart-action-buttons button {
-
-}
-
 .cart-content {
   display: flex;
   flex-wrap: nowrap;

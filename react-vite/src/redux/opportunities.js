@@ -203,6 +203,7 @@ export const deleteOppThunk = (opportunityId) => async (dispatch) => {
 const initialState = {
   opportunities: [],
   opportunity: null,
+  opportunityDetails: [],
   loading: false,
   error: null,
 };
@@ -225,9 +226,30 @@ const opportunityReducer = (state = initialState, action) => {
         opportunities: [...state.opportunities, action.data],
         error: null,
       };
+    // case EDIT_A_OPPORTUNITY: {
+    //   return action.data;
+    // }
+    // case EDIT_A_OPPORTUNITY:
+    //   return {
+    //     ...state,
+    //     opportunities: state.opportunities.map(
+    //       (opportunities) =>
+    //         console.log("OPPORTUNITIES THUNK EDIT>>>>", opportunities),
+    //       opportunities.id === action.data.id ? action.data : review
+    //     ),
+    //   };
+
+    // Assuming EDIT_A_OPPORTUNITY should update an existing entry in the state
     case EDIT_A_OPPORTUNITY: {
-      return action.data;
+      const updatedOpportunities = state.opportunities.map((opp) =>
+        opp.id === action.data.id ? action.data : opp
+      );
+      return {
+        ...state,
+        opportunities: updatedOpportunities,
+      };
     }
+
     case DELETE_A_OPPORTUNITY: {
       const newState = { ...state };
       delete newState[action.data];

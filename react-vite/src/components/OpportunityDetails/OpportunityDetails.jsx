@@ -15,7 +15,7 @@ const OpportunityDetailsPage = () => {
   const allReviews = useSelector((state) => state.reviews.reviews || []);
   // const allUsers = useSelector((state) => state.session.users || []);
   const userCart = useSelector((state) => state?.carts?.cart_items);
-  const currentUser = useSelector((state) => state.session.user);
+  const currentUser = useSelector((state) => state?.session?.user);
   const [averageRating, setAverageRating] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(true);

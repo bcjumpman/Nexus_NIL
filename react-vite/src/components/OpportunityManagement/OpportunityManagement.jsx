@@ -12,7 +12,7 @@ const OpportunityManagement = () => {
     (state) => state?.opportunities?.opportunities?.opportunities
   );
   const { setModalContent, closeModal } = useModal();
-  console.log("OPPORTUNITIES>>>>>>", opportunities);
+  // console.log("OPPORTUNITIES>>>>>>", opportunities);
   useEffect(() => {
     dispatch(loadOwnedOppsThunk());
   }, [dispatch]);

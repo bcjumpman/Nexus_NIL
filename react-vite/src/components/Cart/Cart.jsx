@@ -341,11 +341,24 @@ const CartManagement = () => {
   };
 
   //* deleting opp from cart
+  // const handleDeleteItem = async (cartItemId) => {
+  //   console.log("CART ITEM ID>>>", cartItemId.id);
+  //   await dispatch(removeFromCartThunk(cartItemId.id)).then(() =>
+  //     setReload(!reload)
+  //   );
+  // };
   const handleDeleteItem = async (cartItemId) => {
     console.log("CART ITEM ID>>>", cartItemId.id);
-    await dispatch(removeFromCartThunk(cartItemId.id)).then(() =>
-      setReload(!reload)
-    );
+    try {
+      await dispatch(removeFromCartThunk(cartItemId.id));
+      setReload(!reload); // This will toggle the reload state to trigger updates as needed
+      alert(
+        "Item deleted successfully. Please refresh your page to view updated cart."
+      );
+    } catch (error) {
+      console.error("Failed to delete item:", error);
+      alert("Failed to delete item. Please try again.");
+    }
   };
 
   //* checkout cart
@@ -372,7 +385,8 @@ const CartManagement = () => {
     <div>
       <div>Welcome, {currentUser.first_name}</div>
       <div>
-        {singleCart?.length > 0 ? (
+        {/* {singleCart?.length > 0 ? ( */}
+        {CartItems?.length > 0 ? (
           <h2>Your NIL Deals Are Waiting...</h2>
         ) : (
           <div>
