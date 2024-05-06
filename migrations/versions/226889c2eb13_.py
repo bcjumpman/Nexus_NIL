@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: 226889c2eb13
-Revises: 
+Revises:
 Create Date: 2024-04-29 09:58:09.881833
 
 """
@@ -25,7 +25,7 @@ def upgrade():
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('first_name', sa.String(length=30), nullable=False),
     sa.Column('last_name', sa.String(length=30), nullable=False),
-    sa.Column('phone', sa.Integer(), nullable=False),
+    # sa.Column('phone', sa.Integer(), nullable=False),
     sa.Column('school', sa.String(length=255), nullable=True),
     sa.Column('biography', sa.Text(), nullable=True),
     sa.Column('sport', sa.String(length=50), nullable=True),
