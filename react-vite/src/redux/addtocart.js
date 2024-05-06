@@ -91,13 +91,16 @@ export const removeFromCartThunk = (cartItemId) => async (dispatch) => {
 const addToCartReducer = (state = {}, action) => {
   switch (action.type) {
     case ADDING_TO_CART:
-      // console.log("ACTION DATA", action.data);
+      console.log("ACTION DATA THINK>>>", action.data);
       return { ...state, ...action.data };
     case UPDATING_CART:
       return { ...state, ...action.data };
     case REMOVE_FROM_CART: {
       const newState = { ...state };
-      delete newState[action.item];
+      console.log("ACTION DATA THUNK>>", action.data);
+      console.log("NEW STATE ACTION ITEM>>>", newState);
+      console.log("NEW STATE ACTION ITEM>>>", newState[action.item]);
+      delete newState[action.item.id];
       return newState;
     }
     default:

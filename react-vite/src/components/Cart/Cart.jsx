@@ -350,6 +350,7 @@ const CartManagement = () => {
 
   //* checkout cart
   const handleCheckout = async () => {
+    console.log("SINGLE CART>>>>", singleCart);
     for (let item of singleCart) {
       await dispatch(removeFromCartThunk(item.id));
     }
@@ -444,6 +445,7 @@ const CartManagement = () => {
           </p>
           <div className="cart-action-buttons">
             <button
+              className="save-btn"
               onClick={() => {
                 handleUpdateCart();
                 window.location.href = "/";
@@ -454,10 +456,11 @@ const CartManagement = () => {
             {/* Conditionally render checkout button */}
             {CartItems.length > 0 && (
               <OpenModalButton
+                className="checkout-btn"
                 buttonText="Checkout"
                 modalComponent={
                   <CheckoutMessage
-                    message={`Thank you ${currentUser.first_name} for using Nexus. Check your email for responses!`}
+                    message={`Thank you ${currentUser.first_name} for using Nexus. Your proposals have been sent. Keep an eye on your email.!`}
                   />
                 }
                 onButtonClick={handleCheckout}

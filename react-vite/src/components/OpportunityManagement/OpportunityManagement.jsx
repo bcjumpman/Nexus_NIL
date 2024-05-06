@@ -97,7 +97,7 @@ const OpportunityManagement = () => {
         className="add-opportunity-button"
         onClick={() => handleAddOpportunity()}
       >
-        List New Opportunity
+        Add New Opportunity
       </button>
     </div>
   );

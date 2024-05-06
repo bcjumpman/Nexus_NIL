@@ -38,6 +38,45 @@ def owned_opportunities():
 
 
 # * Create opportunity
+# @opportunity_routes.route('/new', methods=['POST'])
+# @login_required
+# def create_listing():
+#     form = OpportunityForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+
+#     if form.validate_on_submit():
+#         # image = form.data['image_url']
+#         # url = None
+
+#         # if image:
+#         #     image.filename = get_unique_filename(image.filename)
+#         #     upload = upload_file_to_s3(image)
+
+#         #     if "url" not in upload:
+#         #         return jsonify({'error': 'Not a valid image, upload failed'}), 400
+
+#         #     url = upload['url']
+
+#         opportunity_listing = Opportunity(
+#             user_id=current_user.id,
+#             title=form.title.data,
+#             rate=form.rate.data,
+#             type=form.type.data,
+#             multiple_days=form.multiple_days.data,
+#             number_of_days=form.number_of_days.data,
+#             contact_information=form.contact_information.data,
+#             description=form.description.data
+#         )
+
+#         db.session.add(opportunity_listing)
+#         db.session.commit()
+
+#         return jsonify({'opportunity': opportunity_listing.to_dict()}), 201
+#     else:
+#         errors = form.errors
+#         return jsonify({'errors': errors}), 400
+
+
 @opportunity_routes.route('/new', methods=['POST'])
 @login_required
 def create_listing():
@@ -45,37 +84,24 @@ def create_listing():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        image = form.data['image_url']
-        url = None
-
-        if image:
-            image.filename = get_unique_filename(image.filename)
-            upload = upload_file_to_s3(image)
-
-            if "url" not in upload:
-                return jsonify({'error': 'Not a valid image, upload failed'}), 400
-
-            url = upload['url']
-
-        opportunity_listing = Opportunity(
-            user_id=current_user.id,
-            title=form.title.data,
-            rate=form.rate.data,
-            type=form.type.data,
-            multiple_days=form.multiple_days.data,
-            number_of_days=form.number_of_days.data,
-            contact_information=form.contact_information.data,
-            image=url,
-            description=form.description.data
-        )
-
-        db.session.add(opportunity_listing)
-        db.session.commit()
-
-        return jsonify({'opportunity': opportunity_listing.to_dict()}), 201
+        try:
+            opportunity_listing = Opportunity(
+                user_id=current_user.id,
+                title=form.title.data,
+                rate=form.rate.data,
+                type=form.type.data,
+                description=form.description.data
+                # Include other fields as necessary
+            )
+            db.session.add(opportunity_listing)
+            db.session.commit()
+            return jsonify({'opportunity': opportunity_listing.to_dict()}), 201
+        except Exception as e:
+            print(f"Error saving opportunity: {e}")
+            db.session.rollback()
+            return jsonify({'error': 'Failed to create opportunity'}), 500
     else:
-        errors = form.errors
-        return jsonify({'errors': errors}), 400
+        return jsonify({'errors': form.errors}), 400
 
 
 #* update opp

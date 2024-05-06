@@ -2,6 +2,7 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+
   }
 
   .opportunity-management-container .page-title {
@@ -92,4 +93,20 @@
 
   .add-opportunity-button:hover {
     background-color: #008cff;
+  }
+
+  .modal-content {
+    background-color: #e6e6e6;
+    display: flex;
+    flex-direction: column;
+
+
+  }
+
+  .modal-buttons {
+    font-size: 20px;
+  }
+
+  .modal-button-confirm {
+    background-color: red;
   }

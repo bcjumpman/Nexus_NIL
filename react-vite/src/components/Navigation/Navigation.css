@@ -167,13 +167,21 @@ ul.profile-dropdown .logout button:hover{
   margin-bottom: 10px;
 }
 
-.cart-content .cart-action-buttons {
+.cart-content {
   display: flex;
-  justify-content: space-between;
+  justify-content:center;
 }
 
-.cart-content .cart-action-buttons button {
-  flex: 0 0 auto;
+.cart-content button {
+  /* flex: 0 0 auto; */
+}
+
+.cart-action-buttons {
+
+}
+
+.cart-action-buttons button {
+
 }
 
 .cart-content {
@@ -246,3 +254,7 @@ p.cart-item-name {
 .type-section ul li a:hover {
   text-decoration: underline;
 }
+
+/* .save-btn button {
+  background-color: #089d00;
+} */

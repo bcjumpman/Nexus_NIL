@@ -1,7 +1,7 @@
 import CreateOpportunityForm from "./OpportunitiesForm";
 
 const AddOpportunity = () => {
-  const buttonName = "List New Opportunity";
+  const buttonName = "Add New Opportunity";
 
   const newOpportunity = {
     title: "",
