@@ -7,7 +7,7 @@ const AddOpportunity = () => {
     title: "",
     rate: "",
     type: "",
-    // image: "",
+    image: "",
     description: "",
   };
 
