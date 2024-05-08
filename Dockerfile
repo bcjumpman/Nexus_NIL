@@ -18,6 +18,8 @@ RUN pip install -r requirements.txt
 RUN pip install psycopg2
 
 COPY . .
+COPY ./migrations /app/migrations
+
 
 RUN flask db upgrade
 RUN flask seed all
