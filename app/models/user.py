@@ -16,7 +16,6 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
-    # phone = db.Column(db.Integer, nullable=False)
     school = db.Column(db.String(255))
     biography = db.Column(db.Text)
     sport = db.Column(db.String(50))
@@ -54,7 +53,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            # 'phone': self.phone,
             'school': self.school,
             'biography': self.biography,
             'sport': self.sport,
