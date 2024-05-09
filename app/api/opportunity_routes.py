@@ -84,7 +84,7 @@ def create_listing():
 def edit_listing(id):
     opportunity = Opportunity.query.get(id)
 
-    form = Opportunity()
+    form = OpportunityForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if not opportunity:

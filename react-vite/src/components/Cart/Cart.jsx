@@ -30,8 +30,8 @@ const CartManagement = () => {
 
   // console.log("ALL OPPS>>>>", allOpportunities);
   // console.log("SINGLE CART>>>", singleCart);
-  console.log("CART ITEMS>>>", CartItems);
-  console.log("SINGLE ITEM>>>", singleItem);
+  // console.log("CART ITEMS>>>", CartItems);
+  // console.log("SINGLE ITEM>>>", singleItem);
   const CheckoutMessage = ({ message }) => {
     return (
       <div className="checkout-message">
@@ -54,9 +54,7 @@ const CartManagement = () => {
     };
 
     fetchData();
-  }, [dispatch, CartItems?.length]);
-  // }, [dispatch, CartItems?.length]);
-  // }, [dispatch]);
+  }, [dispatch, reload]);
 
   // //* action of incrementing
   // const handleIncrement = (opportunityId) => {
@@ -79,13 +77,6 @@ const CartManagement = () => {
   //   }
   // };
 
-  //* adding opp to cart
-  // const handleAddToCart = (opportunityId) => {
-  //   dispatch(addToCartThunk(userCart?.id, opportunityId)).then(() =>
-  //     setReload(!reload)
-  //   );
-  // };
-
   //* updating cart
   const handleUpdateCart = () => {
     const updatedCart = userCart.map((item) => ({
@@ -96,23 +87,16 @@ const CartManagement = () => {
   };
 
   //* deleting opp from cart
-  // const handleDeleteItem = async (cartItemId) => {
-  //   console.log("CART ITEM ID>>>", cartItemId.id);
-  //   await dispatch(removeFromCartThunk(cartItemId.id)).then(() =>
-  //     setReload(!reload)
-  //   );
-  // };
   const handleDeleteItem = async (cartItemId) => {
     console.log("CART ITEM ID>>>", cartItemId.id);
     try {
       await dispatch(removeFromCartThunk(cartItemId.id));
-      setReload(!reload); // This will toggle the reload state to trigger updates as needed
-      alert(
-        "Item deleted successfully. Please refresh your page to view updated cart."
-      );
+      // Directly toggle the reload state to trigger an update
+      setReload((reload) => !reload);
+      // alert("Item deleted successfully. The page will now update.");
     } catch (error) {
       console.error("Failed to delete item:", error);
-      alert("Failed to delete item. Please try again.");
+      // alert("Failed to delete item. Please try again.");
     }
   };
 

@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { loadOwnedOppsThunk, deleteOppThunk } from "../../redux/opportunities";
 import "./OpportunityManagement.css";
 
 const OpportunityManagement = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state?.session?.user);
   const opportunities = useSelector(
@@ -17,8 +18,13 @@ const OpportunityManagement = () => {
     dispatch(loadOwnedOppsThunk());
   }, [dispatch]);
 
+  // const handleAddOpportunity = () => {
+  //   window.location.href = `/opportunities/manage/new`;
+  // };
+
   const handleAddOpportunity = () => {
-    window.location.href = `/opportunities/manage/new`;
+    // Navigate to add new opportunity form and handle addition
+    navigate(`/opportunities/manage/new`);
   };
 
   const handleEditOpportunity = (opportunityId) => {
@@ -55,7 +61,8 @@ const OpportunityManagement = () => {
       }, 1000);
     }
   };
-
+  // console.log("OP MGMT OPPS>>>", opportunities);
+  console.log("OP MGMT CURR USER>>>", currentUser);
   if (!opportunities || !currentUser) {
     return <p>Loading... Please Hold!</p>;
   }

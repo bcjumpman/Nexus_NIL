@@ -73,21 +73,53 @@ const CreateOpportunityForm = ({ buttonName, updatingOpportunity }) => {
     setErrors(newErrors);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (Object.keys(errors).length > 0) {
+  //     return; // Prevent form submission if errors are present
+  //   }
+
+  //   try {
+  //     if (!opportunityId) {
+  //       await dispatch(addNewOpportunityThunk(formData));
+  //       nav("/manage");
+  //       alert("New opportunity added! Please return to your management page.");
+  //     } else {
+  //       await dispatch(editOppThunk(opportunityId, formData));
+  //       nav(`/opportunities/${opportunityId}`);
+  //       alert("Opportunity updated successfully!");
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to save the opportunity:", error);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (Object.keys(errors).length > 0) {
+      alert("Please correct the errors before submitting.");
       return; // Prevent form submission if errors are present
     }
 
     try {
       if (!opportunityId) {
-        await dispatch(addNewOpportunityThunk(formData));
-        nav("/manage");
-        alert("New opportunity added! Please return to your management page.");
+        const result = await dispatch(addNewOpportunityThunk(formData));
+        if (result.success) {
+          nav("/manage");
+          alert(
+            "New opportunity added! Please return to your management page."
+          );
+        } else {
+          alert(result.error);
+        }
       } else {
-        await dispatch(editOppThunk(opportunityId, formData));
-        nav(`/opportunities/${opportunityId}`);
-        alert("Opportunity updated successfully!");
+        const result = await dispatch(editOppThunk(opportunityId, formData));
+        if (result.success) {
+          nav(`/opportunities/${opportunityId}`);
+          alert("Opportunity updated successfully!");
+        } else {
+          alert(result.error);
+        }
       }
     } catch (error) {
       console.error("Failed to save the opportunity:", error);

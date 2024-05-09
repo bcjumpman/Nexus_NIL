@@ -15,6 +15,26 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const handleEmailChange = (e) => {
+    const emailInput = e.target.value;
+    setEmail(emailInput);
+    if (!validateEmail(emailInput)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Invalid email address.",
+      }));
+    } else {
+      const newErrors = { ...errors };
+      delete newErrors.email;
+      setErrors(newErrors);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -23,6 +43,11 @@ function SignupFormModal() {
         confirmPassword:
           "Confirm Password field must be the same as the Password field",
       });
+    }
+
+    if (!validateEmail(email)) {
+      setErrors({ ...errors, email: "Invalid email address." });
+      return;
     }
 
     const serverResponse = await dispatch(
@@ -72,7 +97,7 @@ function SignupFormModal() {
             <input
               type="text"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
               required
             />
           </label>
