@@ -16,7 +16,6 @@ const CreateNewReview = ({ buttonName, updatingReview }) => {
   const [submitted, setSubmitted] = useState(false);
   const [hover, setHover] = useState(null);
 
-  // console.log("OPPORTUNITY ID>>>>", opportunityId);
   useEffect(() => {
     if (updatingReview) {
       setDescription(updatingReview.description);
@@ -46,7 +45,6 @@ const CreateNewReview = ({ buttonName, updatingReview }) => {
 
     try {
       const result = await dispatch(action);
-      // console.log("RESULT>>>", result);
       if (result.error) {
         setValidations({ message: result.error });
       } else {

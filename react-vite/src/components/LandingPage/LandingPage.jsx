@@ -32,13 +32,9 @@ const AllOpportunities = () => {
     };
 
     fetchOpportunities();
-    // console.log("USER CARTS>>>>>>> FROM useEffect", getAllUsersCartsThunk());
   }, [dispatch]);
 
   const handleAddToCart = (opportunityId) => {
-    // console.log("HELLOOOO>>>>>.");
-    console.log("SINGLE CART ID FROM LANDING>>>>", singleCartId);
-    // console.log("SINGLE CART ID ID FROM LANDING>>>>", cartId);
     dispatch(addToCartThunk(singleCartId, opportunityId));
     // .then(() =>
     // setReload(!reload)

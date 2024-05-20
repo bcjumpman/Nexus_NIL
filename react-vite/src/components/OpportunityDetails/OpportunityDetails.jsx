@@ -34,8 +34,6 @@ const OpportunityDetailsPage = () => {
   useEffect(() => {
     if (allReviews.length > 0) {
       const totalRating = allReviews.reduce((acc, curr) => {
-        // console.log("ACC>>", acc);
-        // console.log("CURR>>", curr);
         return acc + curr.rating;
       }, 0);
       const avgRating = totalRating / allReviews.length;
@@ -90,7 +88,6 @@ const OpportunityDetailsPage = () => {
     (review) => review.user_id === currentUser?.id
   );
 
-  // console.log("ALL REVIEWS>>>>", allReviews);
   const relatedReviews = allReviews.filter(
     (review) => review.opportunity_id?.toString() === opportunityId
   );
@@ -149,7 +146,6 @@ const OpportunityDetailsPage = () => {
           </p> */}
           <p className="review-rating">{renderStarIcons(review.rating)}</p>
           <p className="review-body">{review.description}</p>
-          {console.log(review.description)}
           {/* <p className="review-verified-purchase">
             Verified Booking: {review.verified_booing ? "Yes" : "No"}
           </p> */}

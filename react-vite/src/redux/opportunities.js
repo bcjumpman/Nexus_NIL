@@ -182,7 +182,6 @@ export const addNewOpportunityThunk =
       }
 
       const data = await response.json();
-      console.log("New opportunity added:", data);
       dispatch(addNewOpportunity(data));
       navigate("/manage"); // Navigate to manage opportunities page
     } catch (error) {
@@ -263,7 +262,6 @@ const initialState = {
 const opportunityReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ALL_OPPORTUNITIES:
-      // console.log("ACTION PAYLOAD", action.payload);
       return { ...state, opportunities: action.payload };
     case GET_ONE_OPPORTUNITY:
       return { ...state, opportunity: action.data };

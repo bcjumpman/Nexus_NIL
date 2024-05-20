@@ -13,7 +13,6 @@ const OpportunityManagement = () => {
     (state) => state?.opportunities?.opportunities?.opportunities
   );
   const { setModalContent, closeModal } = useModal();
-  // console.log("OPPORTUNITIES>>>>>>", opportunities);
   useEffect(() => {
     dispatch(loadOwnedOppsThunk());
   }, [dispatch]);
@@ -61,8 +60,7 @@ const OpportunityManagement = () => {
       }, 1000);
     }
   };
-  // console.log("OP MGMT OPPS>>>", opportunities);
-  console.log("OP MGMT CURR USER>>>", currentUser);
+
   if (!opportunities || !currentUser) {
     return <p>Loading... Please Hold!</p>;
   }

@@ -28,10 +28,6 @@ const CartManagement = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { closeModal } = useModal();
 
-  // console.log("ALL OPPS>>>>", allOpportunities);
-  // console.log("SINGLE CART>>>", singleCart);
-  // console.log("CART ITEMS>>>", CartItems);
-  // console.log("SINGLE ITEM>>>", singleItem);
   const CheckoutMessage = ({ message }) => {
     return (
       <div className="checkout-message">
@@ -88,7 +84,6 @@ const CartManagement = () => {
 
   //* deleting opp from cart
   const handleDeleteItem = async (cartItemId) => {
-    console.log("CART ITEM ID>>>", cartItemId.id);
     try {
       await dispatch(removeFromCartThunk(cartItemId.id));
       // Directly toggle the reload state to trigger an update
@@ -102,7 +97,6 @@ const CartManagement = () => {
 
   //* checkout cart
   const handleCheckout = async () => {
-    console.log("SINGLE CART>>>>", singleCart);
     for (let item of singleCart) {
       await dispatch(removeFromCartThunk(item.id));
     }

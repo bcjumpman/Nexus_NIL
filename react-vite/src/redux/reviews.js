@@ -138,7 +138,6 @@ export const updateReviewThunk = (reviewId, reviewData) => async (dispatch) => {
     if (!response.ok) {
       throw new Error(data.message || "Failed to update review");
     }
-    // console.log(data);
     dispatch(updateReview(data));
     return data;
   } catch (error) {
@@ -237,7 +236,6 @@ const reviewReducer = (state = initialState, action) => {
         ),
       };
     case GET_ONE_REVIEW:
-      // console.log("REVIEWS THUNK", reviews);
       return { ...state, reviews: action.data };
     case LOAD_UPDATE:
       return { ...state, review: action.data };

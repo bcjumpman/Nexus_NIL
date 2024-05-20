@@ -9,7 +9,6 @@ const DeleteReview = () => {
   const navigate = useNavigate();
   // const { closeModal } = useModal();
   const { reviewId, opportunityId } = useParams();
-  console.log("OPPORTUNITy ID>>>", opportunityId);
   const onDelete = (e) => {
     e.preventDefault();
     dispatch(deleteReviewThunk(reviewId)).then(() => {

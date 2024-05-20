@@ -9,8 +9,6 @@ const UpdateReview = () => {
   const { reviewId } = useParams();
   const reviews = useSelector((state) => state?.reviews.review);
   // const review = reviews.find((review) => review.id === +reviewId);
-  // console.log("STATE>>>", state);
-  console.log("REVIEWS>>>", reviews);
   const review = reviews;
 
   useEffect(() => {
