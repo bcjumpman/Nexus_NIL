@@ -1,133 +1,52 @@
-# Flask React Project
+# Nexus NIL Marketplace
 
-This is the starter for the Flask React project.
+[1]: https://nexus-nil-5lqm.onrender.com/
+[2]: https://github.com/bcjumpman/Nexus_NIL/assets/166954553/be966f0c-8a31-44b5-aeaf-76afd8d57625
 
-## Getting started
+## Live Link 
 
-1. Clone this repository (only this branch).
+[Nexus Marketplace][1]
 
-2. Install dependencies.
+## Introduction
 
-   ```bash
-   pipenv install -r requirements.txt
-   ```
+Full stack solo project clone of Amazon. Users can browse a collection of Name, Image, and Likeness deals, add them to their cart, and seamlessly submit requests to potential companies. Additionally, users can leave reviews on past bookings.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment.
+## Backend Technology
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file.
+Flask, SQL Alchemy, POSTGRESQL, Faker and Docker were used to create the database and backend routes. 
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable. Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention.**
+[Database schema][2]
 
-6. Get into your pipenv, migrate your database, seed your database, and run your
-   Flask app:
+Routes used with Flask for:
+ * Carts
+ * Reviews
+ * Opportunities
+ * User
+ * Authentication
 
-   ```bash
-   pipenv shell
-   ```
+Hosting is managed by Render.
 
-   ```bash
-   flask db upgrade
-   ```
+## Frontend Technology
 
-   ```bash
-   flask seed all
-   ```
+React, Redux, and React-Icons were used to create the front-end functionality.
 
-   ```bash
-   flask run
-   ```
+## Navigation Images
 
-7. The React frontend has no styling applied. Copy the **.css** files from your
-   Authenticate Me project into the corresponding locations in the
-   **react-vite** folder to give your project a unique look.
+* Landing Page
+![Screenshot 2024-05-20 at 1 13 07 PM](https://github.com/bcjumpman/Nexus_NIL/assets/32880108/77ffdef1-2d54-423d-9804-831130969118)
 
-8. To run the React frontend in development, `cd` into the **react-vite**
-   directory and run `npm i` to install dependencies. Next, run `npm run build`
-   to create the `dist` folder. The starter has modified the `npm run build`
-   command to include the `--watch` flag. This flag will rebuild the **dist**
-   folder whenever you change your code, keeping the production version up to
-   date.
+* Opportunity Page
+![Screenshot 2024-05-20 at 1 13 33 PM](https://github.com/bcjumpman/Nexus_NIL/assets/32880108/4e87f716-5f53-46b2-979b-4210986af3ec)
 
-## Deployment through Render.com
+* Manage Opportunity Page
+![Screenshot 2024-05-20 at 1 13 46 PM](https://github.com/bcjumpman/Nexus_NIL/assets/32880108/b28b76aa-a095-461a-bb8f-c472511d4775)
 
-First, recall that Vite is a development dependency, so it will not be used in
-production. This means that you must already have the **dist** folder located in
-the root of your **react-vite** folder when you push to GitHub. This **dist**
-folder contains your React code and all necessary dependencies minified and
-bundled into a smaller footprint, ready to be served from your Python API.
+* Cart Page
+![Screenshot 2024-05-20 at 1 14 13 PM](https://github.com/bcjumpman/Nexus_NIL/assets/32880108/a57da48d-544b-40db-8666-684959447539)
 
-Begin deployment by running `npm run build` in your **react-vite** folder and
-pushing any changes to GitHub.
 
-Refer to your Render.com deployment articles for more detailed instructions
-about getting started with [Render.com], creating a production database, and
-deployment debugging tips.
+## Future Additions
 
-From the Render [Dashboard], click on the "New +" button in the navigation bar,
-and click on "Web Service" to create the application that will be deployed.
-
-Select that you want to "Build and deploy from a Git repository" and click
-"Next". On the next page, find the name of the application repo you want to
-deploy and click the "Connect" button to the right of the name.
-
-Now you need to fill out the form to configure your app. Most of the setup will
-be handled by the **Dockerfile**, but you do need to fill in a few fields.
-
-Start by giving your application a name.
-
-Make sure the Region is set to the location closest to you, the Branch is set to
-"main", and Runtime is set to "Docker". You can leave the Root Directory field
-blank. (By default, Render will run commands from the root directory.)
-
-Select "Free" as your Instance Type.
-
-### Add environment variables
-
-In the development environment, you have been securing your environment
-variables in a **.env** file, which has been removed from source control (i.e.,
-the file is gitignored). In this step, you will need to input the keys and
-values for the environment variables you need for production into the Render
-GUI.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from the **External Database URL** field)
-
-**Note:** Add any other keys and values that may be present in your local
-**.env** file. As you work to further develop your project, you may need to add
-more environment variables to your local **.env** file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment.
-
-### Deploy
-
-Now you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your Dockerfile
-commands being executed and any errors that occur.
-
-When deployment is complete, open your deployed site and check to see that you
-have successfully deployed your Flask application to Render! You can find the
-URL for your site just below the name of the Web Service at the top of the page.
-
-**Note:** By default, Render will set Auto-Deploy for your project to true. This
-setting will cause Render to re-deploy your application every time you push to
-main, always keeping it up to date.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
-
-# Nexus_NIL
+   * Search by type
+   * Messaging
+   * Communities
