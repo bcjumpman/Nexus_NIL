@@ -146,50 +146,51 @@ const AllOpportunities = () => {
   };
 
   return (
-    <div className="opportunities-container">
-      {isLoading ? (
-        <div className="loading-container">
-          <div id="loading-bar" className="loading-bar"></div>
-        </div>
-      ) : paginatedOpportunities && paginatedOpportunities.length > 0 ? (
-        paginatedOpportunities.map((opportunity) => (
-          <div className="opportunity-container" key={opportunity.id}>
-            <img
-              className="opportunity-image"
-              src={opportunity.image}
-              alt={opportunity.name}
-            />
-            <div className="opportunity-info">
-              <h3>{opportunity.name}</h3>
-              <p>
-                {opportunity.title} - {opportunity.type}
-              </p>
-            </div>
-            <NavLink to={`/opportunities/${opportunity.id}`}>
-              <button>View Details</button>
-            </NavLink>
-            <button
-              className="add-to-cart-button"
-              onClick={() => handleAddToCart(opportunity.id)}
-            >
-              Add to Cart
-            </button>
+    <>
+      <div className="opportunities-container">
+        {isLoading ? (
+          <div className="loading-container">
+            <div id="loading-bar" className="loading-bar"></div>
           </div>
-        ))
-      ) : (
-        <div>No opportunities found</div>
-      )}
-
-      {/* Render Pagination Component */}
+        ) : paginatedOpportunities && paginatedOpportunities.length > 0 ? (
+          paginatedOpportunities.map((opportunity) => (
+            <div className="opportunity-container" key={opportunity.id}>
+              <img
+                className="opportunity-image"
+                src={opportunity.image}
+                alt={opportunity.name}
+              />
+              <div className="opportunity-info">
+                <h3>{opportunity.name}</h3>
+                <p>
+                  {opportunity.title} - {opportunity.type}
+                </p>
+              </div>
+              <NavLink to={`/opportunities/${opportunity.id}`}>
+                <button>View Details</button>
+              </NavLink>
+              <button
+                className="add-to-cart-button"
+                onClick={() => handleAddToCart(opportunity.id)}
+              >
+                Add to Cart
+              </button>
+            </div>
+          ))
+        ) : (
+          <div>No opportunities found</div>
+        )}
+      </div>
       <ReactPaginate
         pageCount={totalPages}
-        pageRangeDisplayed={5} // Number of page links to display
-        marginPagesDisplayed={2} // Number of margin pages to display
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
         onPageChange={handlePageChange}
         containerClassName={"pagination"}
         activeClassName={"active"}
       />
-    </div>
+      ;
+    </>
   );
 };
 

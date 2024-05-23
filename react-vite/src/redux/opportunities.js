@@ -286,6 +286,7 @@ const opportunityReducer = (state = initialState, action) => {
       const updatedOpportunities = state.opportunities.opportunities.map(
         (opp) => (opp.id === action.data.id ? action.data : opp)
       );
+      // console.log("UPDATED OPPORTUNITIES ", updatedOpportunities);
       return {
         ...state,
         opportunities: updatedOpportunities,

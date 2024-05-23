@@ -32,15 +32,28 @@ const CreateOpportunityForm = ({ buttonName, updatingOpportunity }) => {
   });
   const [errors, setErrors] = useState({});
 
+  // useEffect(() => {
+  //   if (updatingOpportunity) {
+  //     setFormData({
+  //       title: updatingOpportunity.title,
+  //       rate: updatingOpportunity.rate,
+  //       type: updatingOpportunity.type,
+  //       description: updatingOpportunity.description,
+  //       image: typesToImages[updatingOpportunity.type],
+  //     });
+  //   }
+  // }, [updatingOpportunity]);
+
   useEffect(() => {
     if (updatingOpportunity) {
-      setFormData({
+      setFormData((prevFormData) => ({
+        ...prevFormData,
         title: updatingOpportunity.title,
         rate: updatingOpportunity.rate,
         type: updatingOpportunity.type,
         description: updatingOpportunity.description,
-        image: typesToImages[updatingOpportunity.type],
-      });
+        image: typesToImages[updatingOpportunity.type] || "", // Set image based on type
+      }));
     }
   }, [updatingOpportunity]);
 
@@ -116,7 +129,7 @@ const CreateOpportunityForm = ({ buttonName, updatingOpportunity }) => {
         const result = await dispatch(editOppThunk(opportunityId, formData));
         if (result.success) {
           nav(`/opportunities/${opportunityId}`);
-          alert("Opportunity updated successfully!");
+          // alert("Opportunity updated successfully!");
         } else {
           alert(result.error);
         }
@@ -153,7 +166,7 @@ const CreateOpportunityForm = ({ buttonName, updatingOpportunity }) => {
         />
         {errors.rate && <p style={{ color: "red" }}>{errors.rate}</p>}
       </label>
-      <label>
+      <label className="type-container">
         Type:
         <select
           value={formData.type}

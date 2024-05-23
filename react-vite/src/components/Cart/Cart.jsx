@@ -207,7 +207,7 @@ const CartManagement = () => {
                 buttonText="Checkout"
                 modalComponent={
                   <CheckoutMessage
-                    message={`Thank you ${currentUser.first_name} for using Nexus. Your proposals have been sent. Keep an eye on your email.!`}
+                    message={`Thank you ${currentUser.first_name} for using Nexus. Your proposals have been sent. Keep an eye on your email.`}
                   />
                 }
                 onButtonClick={handleCheckout}

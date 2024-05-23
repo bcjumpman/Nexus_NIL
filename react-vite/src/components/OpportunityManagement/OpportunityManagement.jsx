@@ -69,6 +69,13 @@ const OpportunityManagement = () => {
     <div className="opportunity-management-container">
       <h1 className="welcome-title">Welcome, {currentUser.first_name}!</h1>
       <h4 className="page-title">Manage your Opportunities</h4>
+      <h5 className="adding-title">Want to add a new opportunity?</h5>
+      <button
+        className="add-opportunity-button"
+        onClick={() => handleAddOpportunity()}
+      >
+        Add New Opportunity
+      </button>
       {opportunities.map(
         (opportunity) =>
           opportunity.user_id === currentUser.id && (
@@ -97,13 +104,6 @@ const OpportunityManagement = () => {
             </div>
           )
       )}
-      <h5 className="adding-title">Want to add a new opportunity?</h5>
-      <button
-        className="add-opportunity-button"
-        onClick={() => handleAddOpportunity()}
-      >
-        Add New Opportunity
-      </button>
     </div>
   );
 };
