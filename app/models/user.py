@@ -39,9 +39,24 @@ class User(db.Model, UserMixin):
     def password(self):
         return self.hashed_password
 
+    # @password.setter
+    # def password(self, password):
+    #     self.hashed_password = generate_password_hash(password)
+
     @password.setter
     def password(self, password):
-        self.hashed_password = generate_password_hash(password)
+	# New code starts here #################
+        if password == 'OAUTH':
+            self.hashed_password = 'OAUTH'
+         # If we look at the password_checker() method, we see that it hashes the user input and compares it
+					 ## during login. With this adjustment, even a data breach would NOT expose our Oauth users to
+					 ### having their accounts accessed with our default password for Oauth logins, 'OAUTH', as it would never
+					 #### hash to that value.
+            return
+        	# New code ends here ####################
+
+        else:
+            self.hashed_password = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.password, password)

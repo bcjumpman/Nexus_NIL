@@ -67,6 +67,18 @@ function LoginFormModal() {
             <button type="button" onClick={loginDemoUser}>
               Demo Login
             </button>
+            <button
+              className="google-button"
+              onClick={() =>
+                (window.location.href = `${window.origin}/api/auth/oauth_login`)
+              }
+            >
+              <img
+                src="https://i.postimg.cc/kBCBGRS6/Google-removebg-preview.png"
+                alt="Google Logo"
+              />
+              <span>Sign In with Google</span>
+            </button>
           </div>
         </form>
       </div>

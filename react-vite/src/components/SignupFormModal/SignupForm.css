@@ -72,6 +72,26 @@
     background-color: #3884d6;
   }
 
-  /* .#modal-content {
-    background-color: ccc;;
-  } */
+  .google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    width: max-content;
+  }
+
+  button.google-button {
+    width: 100%;
+    align-items: center;
+  }
+
+  .google-button img {
+    width: 24px;
+    height: auto;
+    margin-right: 10px;
+  }
+
+  .google-button span {
+    color: black;
+    width: 100%;
+  }
