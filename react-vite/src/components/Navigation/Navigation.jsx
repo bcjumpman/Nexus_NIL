@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProfileButton from "./ProfileButton";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadAllThunk } from "../../redux/opportunities";
 import CartManagement from "../Cart/Cart";
 import { FaCartShopping } from "react-icons/fa6";
@@ -11,9 +11,9 @@ import "./Navigation.css";
 function Navigation() {
   const dispatch = useDispatch();
   const [showCart, setShowCart] = useState(false);
-  const allOpportunities = useSelector(
-    (state) => state.opportunities.opportunities.opportunities
-  );
+  // const allOpportunities = useSelector(
+  //   (state) => state.opportunities.opportunities.opportunities
+  // );
   useEffect(() => {
     dispatch(loadAllThunk());
   }, [dispatch]);
@@ -22,14 +22,15 @@ function Navigation() {
     setShowCart(!showCart);
   };
 
-  const types = allOpportunities
-    ? [...new Set(allOpportunities.map((opportunity) => opportunity.type))]
-    : [];
+  // Comment in when adding types to nav bar
+  // const types = allOpportunities
+  //   ? [...new Set(allOpportunities.map((opportunity) => opportunity.type))]
+  //   : [];
 
-  const handleTypeClick = (event) => {
-    event.preventDefault(); // Prevent the navigation
-    alert("Feature coming soon");
-  };
+  // const handleTypeClick = (event) => {
+  //   event.preventDefault(); // Prevent the navigation
+  //   alert("Feature coming soon");
+  // };
   return (
     <nav>
       <div className="navigation-logo-container">
@@ -42,7 +43,7 @@ function Navigation() {
         </NavLink>
       </div>
 
-      <div className="type-section">
+      {/* <div className="type-section">
         <ul>
           {types.map((type) => (
             <li key={type}>
@@ -55,7 +56,7 @@ function Navigation() {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
 
       <div className="additional-links">
         <div className="profile-button">

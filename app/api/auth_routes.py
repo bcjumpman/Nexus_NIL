@@ -376,11 +376,6 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
 
-        # Create a new cart for the user
-        new_cart = Cart(user_id=user.id)
-        db.session.add(new_cart)
-        db.session.commit()
-
         login_user(user)
         return user.to_dict()
     return form.errors, 401
