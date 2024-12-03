@@ -33,7 +33,7 @@ h3 {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  height: 300px;
+  height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,15 +47,16 @@ h3 {
 
 .opportunity-image {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .add-to-cart-button {
   font-weight: 400;
   font-style: normal;
-  margin-top: 10px;
+  margin-top: auto;
   background-color: #6b9ee1;
   color: #111;
   border: 1px solid #a1badb;
