@@ -118,52 +118,6 @@ export const loadOwnedOppsThunk = () => async (dispatch) => {
   }
 };
 
-// export const addNewOpportunityThunk = (newOpportunity) => async (dispatch) => {
-//   dispatch(setLoading(true));
-//   try {
-//     const response = await fetch(`/api/opportunities`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(newOpportunity),
-//     });
-//     if (!response.ok) {
-//       throw new Error("Failed to add new opportunity.");
-//     }
-//     const data = await response.json();
-//     dispatch(addNewOpportunity(data));
-//   } catch (error) {
-//     dispatch(setError(error.message));
-//   }
-//   dispatch(setLoading(false));
-// };
-
-// export const addNewOpportunityThunk = (newOpportunity) => async (dispatch) => {
-//   dispatch(setLoading(true));
-//   try {
-//     const response = await fetch(`/api/opportunities/new`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(newOpportunity),
-//     });
-
-//     if (!response.ok) {
-//       const errorData = await response.json();
-//       console.error("Failed to add new opportunity:", errorData);
-//       dispatch(setError(errorData.errors || "Unknown error"));
-//       return;
-//     }
-
-//     const data = await response.json();
-//     console.log("New opportunity added:", data);
-//     dispatch(addNewOpportunity(data));
-//   } catch (error) {
-//     console.error("Error adding new opportunity:", error);
-//     dispatch(setError(error.toString()));
-//   } finally {
-//     dispatch(setLoading(false));
-//   }
-// };
-
 export const addNewOpportunityThunk =
   (newOpportunity, navigate) => async (dispatch) => {
     dispatch(setLoading(true));
