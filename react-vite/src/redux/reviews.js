@@ -58,46 +58,6 @@ export const getReviewById = (reviewId) => async (dispatch) => {
   }
 };
 
-// //* Create New Review Thunk
-// export const createReviewThunk =
-//   (opportunityId, newReview) => async (dispatch) => {
-//     try {
-//       const response = await fetch(
-//         `/api/opportunities/${opportunityId}/reviews/new`,
-//         {
-//           method: "POST",
-//           body: newReview,
-//         }
-//       );
-
-//       if (response.ok) {
-//         dispatch(createNewReview(newReview));
-//       } else {
-//         throw new Error("Failed to create new review.");
-//       }
-//     } catch (error) {
-//       return { error: error.message };
-//     }
-//   };
-
-// //* Update a Review Thunk
-// export const updateReviewThunk =
-//   (reviewId, updatingReview) => async (dispatch) => {
-//     try {
-//       const response = await fetch(`/api/reviews/${reviewId}/edit`, {
-//         method: "PUT",
-//         body: updatingReview,
-//       });
-
-//       if (!response.ok) {
-//         throw new Error("Failed to update review");
-//       }
-//       dispatch(updateReview(updatingReview));
-//     } catch (error) {
-//       return { error: error.message };
-//     }
-//   };
-
 //* Create New Review Thunk
 export const createReviewThunk =
   (opportunityId, reviewData) => async (dispatch) => {
