@@ -48,32 +48,6 @@ export const setError = (error) => ({
   error,
 });
 
-// Thunks
-// export const loadAllThunk = () => async (dispatch) => {
-//   dispatch(setLoading(true));
-//   try {
-//     const response = await fetch("/api/opportunities");
-//     if (!response.ok) {
-//       throw new Error("Failed to load opportunities.");
-//     }
-//     const data = await response.json();
-//     dispatch(loadAllOpportunities(data));
-//   } catch (error) {
-//     dispatch(setError(error.message));
-//   }
-//   dispatch(setLoading(false));
-// };
-
-// export const loadAllThunk = () => async (dispatch) => {
-//   try {
-//     const response = await fetch("/api/opportunities");
-//     const data = await response.json();
-//     dispatch({ type: "LOAD_ALL_OPPORTUNITIES", payload: data });
-//   } catch (error) {
-//     console.error("Failed to fetch opportunities:", error);
-//   }
-// };
-
 export const loadAllThunk = () => async (dispatch) => {
   try {
     const response = await fetch("/api/opportunities");
